@@ -1,11 +1,12 @@
 const field = document.querySelector('#field');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
 if (field) {
   window.setTimeout(() => field.classList.add('is-revealed'), prefersReducedMotion ? 0 : 220);
 }
 
-if (field && !prefersReducedMotion) {
+if (field && !prefersReducedMotion && canHover) {
   field.addEventListener('pointermove', (event) => {
     const box = field.getBoundingClientRect();
     const x = (event.clientX - box.left) / box.width - 0.5;
