@@ -1,9 +1,18 @@
-const field = document.querySelector('#field');
+const field = document.querySelector('#journey');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+let playerPosition = 44;
 
 if (field) {
-  window.setTimeout(() => field.classList.add('is-revealed'), prefersReducedMotion ? 0 : 220);
+  field.style.setProperty('--player-x', `${playerPosition}%`);
+  field.addEventListener('pointerdown', () => field.focus());
+  field.addEventListener('keydown', (event) => {
+    const movement = { ArrowLeft: -4, a: -4, A: -4, ArrowRight: 4, d: 4, D: 4 }[event.key];
+    if (movement === undefined) return;
+    event.preventDefault();
+    playerPosition = Math.max(6, Math.min(83, playerPosition + movement));
+    field.style.setProperty('--player-x', `${playerPosition}%`);
+  });
 }
 
 if (field && !prefersReducedMotion && canHover) {
