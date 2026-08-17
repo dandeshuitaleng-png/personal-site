@@ -3,82 +3,68 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="黄念鹏 · 独立开发者与数字产品创作者" />
-    <title>黄念鹏 · 做有温度的数字产品</title>
+    <meta name="description" content="黄念鹏的可探索个人创作档案" />
+    <title>HNP.EXE · 个人创作地图</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Serif+SC:wght@500;600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="grain" aria-hidden="true"></div>
-    <header class="site-header">
-      <a class="wordmark" href="#top" aria-label="回到首页">HNP<span>•</span></a>
-      <nav aria-label="主导航">
-        <a href="#work">作品</a>
-        <a href="#about">关于</a>
-        <a href="#contact">联系</a>
-      </nav>
-      <span class="availability"><i></i> 接受有趣的合作</span>
+    <header class="hud">
+      <a class="logo" href="#start">HNP<span>.EXE</span></a>
+      <div class="hud-center"><i></i><span>PLAYER 01</span><b>FIELD → TOWN</b></div>
+      <button class="help" type="button" aria-label="显示操作说明">?</button>
     </header>
 
-    <main id="top">
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <p class="eyebrow">PERSONAL ARCHIVE · FIELD TO TOWN</p>
-          <h1 id="hero-title">从田野<br />走到<em>城镇</em>。</h1>
-          <p class="intro">你好，我是黄念鹏。这里是一张会持续延伸的个人创作地图：沿着一条路，探索我做过、正在做与未来会抵达的作品。</p>
-          <a class="text-link" href="#work">开始探索 <span>→</span></a>
+    <main class="world" id="world" tabindex="0" aria-label="横向像素作品世界；可使用 A、D 或左右方向键移动场景">
+      <section class="stage stage-title" id="start" data-project="">
+        <div class="title-copy">
+          <p class="pixel-label">PERSONAL ARCHIVE · 2026</p>
+          <h1>黄念鹏的<br /><em>创作地图</em></h1>
+          <p>一条从田野走向城镇的路。沿途收录已完成、正在生长，以及尚未被命名的作品。</p>
+          <button class="start-button scroll-next" type="button">▶ START EXPLORING</button>
+          <small>点击或按 D / → 向右出发</small>
         </div>
-        <div class="journey" id="journey" tabindex="0" aria-label="从田野到城镇的横向像素世界；点击后可按 A、D 或左右方向键移动角色">
-          <div class="journey-hud"><span>FIELD</span><span>VILLAGE</span><span>TOWN</span></div>
-          <div class="sun" aria-hidden="true"></div>
-          <div class="hills hills-far" aria-hidden="true"></div><div class="hills hills-near" aria-hidden="true"></div>
-          <div class="rice-field" aria-hidden="true"></div><div class="village" aria-hidden="true"></div><div class="town" aria-hidden="true"></div>
-          <div class="road" aria-hidden="true"></div>
-          <div class="traveller" aria-hidden="true"><i></i><b></b></div>
-          <a class="world-marker marker-one" href="#work"><span>01</span>乡音地图</a>
-          <a class="world-marker marker-two" href="#work"><span>02</span>项目存档</a>
-          <a class="world-marker marker-three" href="#work"><span>03</span>未来入口</a>
-          <p class="journey-prompt">点击场景后，按 A / D 移动</p>
-        </div>
+        <div class="title-landscape" aria-hidden="true"><span class="title-sun"></span><span class="title-hill one"></span><span class="title-hill two"></span><span class="title-grass"></span></div>
       </section>
 
-      <section class="statement" id="about">
-        <p class="section-kicker">我的方法</p>
-        <p>技术不是目的。它是一种更耐心地观察、更准确地连接、也更轻盈地把想法带到人们手中的方式。</p>
+      <section class="stage stage-field" data-project="乡音地图">
+        <div class="scene-label"><span>AREA 01</span><strong>田野</strong><small>FIELD</small></div>
+        <div class="scene-copy"><p class="pixel-label">SAVE 01 · ACTIVE</p><h2>乡音地图</h2><p>从一段声音出发，认识一片土地。</p></div>
+        <button class="gate gate-field" type="button" data-project="乡音地图">E<br /><span>进入存档</span></button>
+        <div class="rice rice-a" aria-hidden="true"></div><div class="rice rice-b" aria-hidden="true"></div><div class="field-path" aria-hidden="true"></div><div class="telegraph" aria-hidden="true"></div><div class="avatar avatar-field" aria-hidden="true"></div>
       </section>
 
-      <section class="work" id="work" aria-labelledby="work-title">
-        <div class="section-head"><p class="section-kicker">精选工作</p><h2 id="work-title">正在生长的<br />数字栖息地</h2></div>
-        <article class="project project-featured">
-          <div class="project-visual dialect-visual">
-            <div class="map-dot dot-one"></div><div class="map-dot dot-two"></div><div class="map-dot dot-three"></div><div class="map-path path-one"></div><div class="map-path path-two"></div>
-            <p>方言不是被保存的标本，<br />而是正在发生的日常。</p>
-          </div>
-          <div class="project-copy">
-            <p class="project-index">01 / 现在</p>
-            <h3>乡音地图</h3>
-            <p>一个面向方言与地方文化的移动产品。探索语言的地理分布，聆听不同地方的表达，也让每个人留下自己的声音。</p>
-            <ul><li>HarmonyOS</li><li>ArkTS</li><li>产品设计</li></ul>
-            <span class="project-status">持续开发中</span>
-          </div>
-        </article>
-        <article class="project project-note">
-          <p class="project-index">02 / 实验</p>
-          <div><h3>小而完整的工具</h3><p>我也在做一些为真实问题而生的小工具：明确、克制，且愿意被长期使用。</p></div>
-          <span>MORE SOON</span>
-        </article>
+      <section class="stage stage-village" data-project="项目二">
+        <div class="scene-label"><span>AREA 02</span><strong>乡村</strong><small>VILLAGE</small></div>
+        <div class="scene-copy"><p class="pixel-label">SAVE 02 · UNLOCKING</p><h2>下一段故事</h2><p>一座小屋、一块公告栏，等待新的作品被写入。</p></div>
+        <button class="gate gate-village" type="button" data-project="项目二">E<br /><span>查看存档</span></button>
+        <div class="village-hill" aria-hidden="true"></div><div class="house house-one" aria-hidden="true"></div><div class="house house-two" aria-hidden="true"></div><div class="tree tree-one" aria-hidden="true"></div><div class="tree tree-two" aria-hidden="true"></div><div class="village-road" aria-hidden="true"></div><div class="avatar avatar-village" aria-hidden="true"></div>
       </section>
 
-      <section class="contact" id="contact">
-        <p class="section-kicker">一起做点好东西</p>
-        <h2>有一个值得<br />被认真实现的想法？</h2>
-        <a class="contact-link" href="mailto:hello@your-domain.com">hello@your-domain.com <span>↗</span></a>
-        <p class="contact-note">将此邮箱替换为你的常用邮箱</p>
+      <section class="stage stage-town" data-project="项目三">
+        <div class="scene-label"><span>AREA 03</span><strong>城镇</strong><small>TOWN</small></div>
+        <div class="scene-copy"><p class="pixel-label">SAVE 03 · READY</p><h2>城市里的工具</h2><p>让想法在更快的生活里，也有一个清楚的入口。</p></div>
+        <button class="gate gate-town" type="button" data-project="项目三">E<br /><span>打开存档</span></button>
+        <div class="town-block block-a" aria-hidden="true"></div><div class="town-block block-b" aria-hidden="true"></div><div class="town-block block-c" aria-hidden="true"></div><div class="street" aria-hidden="true"></div><div class="street-light light-one" aria-hidden="true"></div><div class="street-light light-two" aria-hidden="true"></div><div class="avatar avatar-town" aria-hidden="true"></div>
+      </section>
+
+      <section class="stage stage-future" id="contact" data-project="">
+        <div class="scene-label"><span>AREA 04</span><strong>未完待续</strong><small>EXPANSION</small></div>
+        <div class="future-copy"><p class="pixel-label">NEW SAVE SLOT</p><h2>路还会继续。</h2><p>未来的作品会在这里出现。你也可以留下讯息，参与下一段旅程。</p><a href="mailto:hello@your-domain.com">HELLO@YOUR-DOMAIN.COM ↗</a><small>请替换为你的真实邮箱</small></div>
+        <div class="construction" aria-hidden="true"><b>?</b><span>WORK IN<br />PROGRESS</span></div>
       </section>
     </main>
-    <footer><span>© 2026 黄念鹏</span><span>BUILT WITH CARE · CHINA</span></footer>
+
+    <div class="controls" id="controls"><span>← → / A D 移动</span><span>ENTER 打开存档</span><span>ESC 关闭窗口</span></div>
+    <dialog class="archive" id="archive">
+      <button class="close" type="button" aria-label="关闭存档窗口">×</button>
+      <p class="pixel-label" id="archive-status">SAVE FILE</p>
+      <h2 id="archive-title">作品名称</h2>
+      <p id="archive-copy">项目详情将在这里打开。现在先确定世界的视觉和探索方式。</p>
+      <button class="close archive-button" type="button">返回地图</button>
+    </dialog>
     <script src="script.js"></script>
   </body>
 </html>
