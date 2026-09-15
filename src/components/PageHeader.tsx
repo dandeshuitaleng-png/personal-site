@@ -8,7 +8,7 @@ export default function PageHeader({
 }) {
   return (
     <header className="rise mb-16">
-      <h1 className="mega-cn text-display font-light">{title}</h1>
+      <h1 className="mega-cn text-display">{title}</h1>
       {lead && (
         <p className="mt-6 max-w-[480px] text-body text-fg-2">{lead}</p>
       )}

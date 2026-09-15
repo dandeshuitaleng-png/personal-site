@@ -25,9 +25,10 @@ export default function Hero() {
 
       <div className="rule-in mt-4 h-px w-full bg-line" />
 
-      {/* 巨型名字：整页视觉主体。font-light 是关键 ——
-          轻字重在极端尺度下才有建筑感，粗体只会显得笨重。 */}
-      <h1 className="mega-cn rise rise-1 mt-16 text-mega font-light">
+      {/* 巨型名字：整页视觉主体。
+          宋体笔画自带粗细对比，用默认字重即可 ——
+          再叠轻字重会让横画细到发虚。 */}
+      <h1 className="mega-cn rise rise-1 mt-16 text-mega">
         {site.name}
       </h1>
 
@@ -35,7 +36,8 @@ export default function Hero() {
 
       <div className="rise rise-2 mt-6 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
         <p className="text-lead text-fg-2">{site.role}</p>
-        <p className="text-body text-fg-3 italic">{site.tagline}</p>
+        {/* 中文没有斜体，用 italic 只会得到难看的合成倾斜 —— 靠颜色区分就够了 */}
+        <p className="text-body text-fg-3">{site.tagline}</p>
       </div>
 
       <div className="rise rise-3 mt-24 grid gap-10 sm:grid-cols-[1fr_auto] sm:items-end">

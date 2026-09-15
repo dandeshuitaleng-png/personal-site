@@ -26,7 +26,7 @@ export const mdxComponents = {
   ),
 
   h2: (props: ComponentPropsWithoutRef<"h2">) => (
-    <h2 className="mega-cn mt-24 mb-6 text-title font-light" {...props} />
+    <h2 className="mega-cn mt-24 mb-6 text-title" {...props} />
   ),
   h3: (props: ComponentPropsWithoutRef<"h3">) => (
     <h3 className="mt-16 mb-4 text-lead font-normal" {...props} />
@@ -52,7 +52,7 @@ export const mdxComponents = {
   ),
   blockquote: (props: ComponentPropsWithoutRef<"blockquote">) => (
     <blockquote
-      className="my-16 max-w-[680px] border-l border-line-2 pl-6 text-lead text-fg italic"
+      className="my-16 max-w-[680px] border-l border-line-2 pl-6 text-lead text-fg"
       {...props}
     />
   ),

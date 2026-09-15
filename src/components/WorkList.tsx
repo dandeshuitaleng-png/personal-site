@@ -32,7 +32,7 @@ export default function WorkList({ items }: { items: Project[] }) {
                 </span>
               </div>
 
-              <h3 className="mega-cn mt-6 text-display font-light">
+              <h3 className="mega-cn mt-6 text-display">
                 {project.title}
               </h3>
 

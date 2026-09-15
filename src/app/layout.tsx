@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Noto_Serif_SC, Geist_Mono } from "next/font/google";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { site } from "@/data/site";
 import "./globals.css";
 
-const geistSans = Geist({
+// 思源宋体：标题与正文主字体（自带拉丁字形，中英文同源）
+const serifSC = Noto_Serif_SC({
   subsets: ["latin"],
-  variable: "--font-geist-sans",
+  weight: ["400", "600"],
+  variable: "--font-serif-sc",
   display: "swap",
+  preload: false,
 });
 
+// 等宽：只用于编号、日期、标签这类小信息
 const geistMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-geist-mono",
@@ -37,10 +41,11 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="zh-CN" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html
+      lang="zh-CN"
+      className={`${serifSC.variable} ${geistMono.variable}`}
+    >
       <body className="flex min-h-dvh flex-col">
-        {/* 背景层：极细网格 + 颗粒噪点 + 顶部单点高光。
-            刻意不用大团径向光晕 —— 那是「AI 深色主题」的标志性做法。 */}
         <div
           aria-hidden="true"
           className="grain pointer-events-none fixed inset-0 -z-10 overflow-hidden"

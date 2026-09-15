@@ -6,8 +6,11 @@
    字重、字号、透明度、细线来建立。
    ============================================================ */
 @theme {
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui,
-    -apple-system, "PingFang SC", "Hiragino Sans GB", sans-serif;
+  /* 思源宋体：中英文同源（它自带拉丁字形）。
+     之前用 Geist 的问题是它没有中文字形，中文全部落到系统回退字体，
+     导致中英文是两套字体、字重和字面大小都对不上。 */
+  --font-serif: var(--font-serif-sc), "Songti SC", "SimSun", ui-serif,
+    Georgia, serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
 
   /* 前景：只有三级灰度，层级完全靠透明度 */
@@ -69,7 +72,7 @@ html {
 body {
   background: var(--color-void);
   color: var(--color-fg);
-  font-family: var(--font-sans);
+  font-family: var(--font-serif);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -161,9 +164,10 @@ body {
   letter-spacing: 0.42em;
 }
 
-/* 巨型汉字单独收一下字距 */
+/* 巨型汉字单独收一下字距。
+   宋体的字面自带边距，收得比黑体轻一些，否则笔画会打架。 */
 .mega-cn {
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 /* ============================================================
