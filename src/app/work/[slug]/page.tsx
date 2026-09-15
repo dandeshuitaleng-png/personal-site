@@ -50,7 +50,7 @@ export default async function ProjectPage({
       </Link>
 
       <header className="rise mt-12 mb-4">
-        <h1 className="grad-text text-display font-medium">{project.title}</h1>
+        <h1 className="mega-cn text-display font-medium">{project.title}</h1>
         <p className="mt-8 max-w-[560px] text-lg leading-relaxed text-fg-2">
           {project.summary}
         </p>

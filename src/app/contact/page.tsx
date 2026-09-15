@@ -17,7 +17,7 @@ export default function ContactPage() {
 
       <a
         href={`mailto:${site.email}`}
-        className="grad-accent text-title font-medium break-all transition-opacity hover:opacity-80"
+        className="mega-cn block text-display font-medium break-all transition-colors hover:text-accent"
       >
         {site.email}
       </a>

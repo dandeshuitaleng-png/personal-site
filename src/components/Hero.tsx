@@ -2,54 +2,68 @@ import { site } from "@/data/site";
 
 export default function Hero() {
   return (
-    <section className="mx-auto max-w-[1120px] px-6 pt-24 pb-24 sm:pt-36 sm:pb-32">
-      {/* 状态胶囊：让首屏有「活人感」，也是 Paco 那一路的细节 */}
-      <div className="rise glass inline-flex items-center gap-2.5 rounded-full px-4 py-1.5">
-        <span className="relative flex h-1.5 w-1.5">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-2 opacity-75" />
-          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent-2" />
+    <section className="mx-auto max-w-[1120px] px-6 pt-16 pb-24 sm:pt-20 sm:pb-32">
+      {/* 顶部标签行：英文名 + 状态。用宽字距把短文本拉成一条「标尺」 */}
+      <div className="rise flex flex-wrap items-center justify-between gap-4">
+        <span className="font-mono text-label tracking-wider-x text-fg-3 uppercase">
+          {site.nameEn}
         </span>
-        <span className="font-mono text-meta text-fg-2">{site.now.text}</span>
+
+        <span className="glass inline-flex items-center gap-2.5 rounded-full px-3.5 py-1.5">
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
+          </span>
+          <span className="font-mono text-meta tracking-normal text-fg-2">
+            {site.now.text}
+          </span>
+        </span>
       </div>
 
-      <h1 className="rise rise-1 grad-text mt-9 text-display font-medium">
+      <div className="rule-in mt-5 h-px w-full bg-line" />
+
+      {/* 巨型名字：整页的视觉主体 */}
+      <h1 className="mega-cn rise rise-1 mt-9 text-mega font-medium">
         {site.name}
       </h1>
 
-      <p className="rise rise-2 mt-7 text-xl text-fg-2 sm:text-2xl">
-        {site.role}
-      </p>
+      <div className="rule-in mt-9 h-px w-full bg-line" />
 
-      <p className="rise rise-2 mt-2 text-base italic text-fg-3">
-        {site.tagline}
-      </p>
+      {/* 副信息：左身份，右标语 */}
+      <div className="rise rise-2 mt-6 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
+        <p className="text-lg text-fg-2 sm:text-xl">{site.role}</p>
+        <p className="text-base italic text-fg-3">{site.tagline}</p>
+      </div>
 
-      <p className="rise rise-3 mt-12 max-w-[560px] text-base leading-relaxed text-fg-2">
-        {site.intro}
-      </p>
+      {/* 简介与链接：不对称两栏 */}
+      <div className="rise rise-3 mt-20 grid gap-10 sm:mt-24 sm:grid-cols-[1fr_auto] sm:items-end">
+        <p className="max-w-[500px] text-base leading-relaxed text-fg-2">
+          {site.intro}
+        </p>
 
-      <ul className="rise rise-4 mt-10 flex flex-wrap gap-3">
-        {site.links.map((link) => {
-          const external = link.href.startsWith("http");
-          return (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                target={external ? "_blank" : undefined}
-                rel={external ? "noreferrer" : undefined}
-                className="glass pill-hover inline-flex items-center rounded-full px-5 py-2.5 text-sm text-fg-2"
-              >
-                {link.label}
-                {external && (
-                  <span className="ml-1.5 text-fg-3" aria-hidden="true">
-                    ↗
-                  </span>
-                )}
-              </a>
-            </li>
-          );
-        })}
-      </ul>
+        <ul className="flex flex-wrap gap-3">
+          {site.links.map((link) => {
+            const external = link.href.startsWith("http");
+            return (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noreferrer" : undefined}
+                  className="glass pill-hover inline-flex items-center rounded-full px-5 py-2.5 text-sm text-fg-2"
+                >
+                  {link.label}
+                  {external && (
+                    <span className="ml-1.5 text-fg-3" aria-hidden="true">
+                      ↗
+                    </span>
+                  )}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </section>
   );
 }

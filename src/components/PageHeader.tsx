@@ -1,4 +1,4 @@
-/** 内页统一的页头 */
+/** 内页页头：大标题 + 细线，和内首页保持同一套排版语言 */
 export default function PageHeader({
   title,
   lead,
@@ -7,13 +7,14 @@ export default function PageHeader({
   lead?: string;
 }) {
   return (
-    <header className="rise mb-14">
-      <h1 className="grad-text text-title font-medium">{title}</h1>
+    <header className="rise mb-16">
+      <h1 className="mega-cn text-display font-medium">{title}</h1>
       {lead && (
-        <p className="mt-5 max-w-[560px] text-base leading-relaxed text-fg-2">
+        <p className="mt-7 max-w-[540px] text-base leading-relaxed text-fg-2">
           {lead}
         </p>
       )}
+      <div className="rule-in mt-10 h-px w-full bg-line" />
     </header>
   );
 }

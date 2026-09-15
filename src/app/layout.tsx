@@ -39,14 +39,14 @@ export default function RootLayout({
   return (
     <html lang="zh-CN" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="flex min-h-dvh flex-col">
-        {/* 背景光晕层：固定在视口上，不随滚动移动 */}
+        {/* 背景层：极细网格 + 颗粒噪点 + 顶部单点高光。
+            刻意不用大团径向光晕 —— 那是「AI 深色主题」的标志性做法。 */}
         <div
           aria-hidden="true"
-          className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
+          className="grain pointer-events-none fixed inset-0 -z-10 overflow-hidden"
         >
-          <div className="bg-glow-a breathe absolute -top-[28%] left-1/2 h-[75vh] w-[130vw] -translate-x-1/2 blur-[70px]" />
-          <div className="bg-glow-b absolute top-[42%] -right-[18%] h-[62vh] w-[75vw] blur-[80px]" />
-          <div className="bg-glow-c absolute -bottom-[12%] -left-[12%] h-[55vh] w-[65vw] blur-[80px]" />
+          <div className="fine-grid absolute inset-0" />
+          <div className="light-top absolute inset-x-0 top-0 h-[75vh]" />
         </div>
 
         <Nav />

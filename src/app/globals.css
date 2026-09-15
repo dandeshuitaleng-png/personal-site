@@ -1,44 +1,50 @@
 @import "tailwindcss";
 
 /* ============================================================
-   设计令牌 —— 深色 + 发光/玻璃
-   思路：暗底把作品的色彩托起来，玻璃和光晕提供质感，
-        紫→青渐变作为唯一的强调色系。
+   设计令牌 —— 巨型字体 + 精密材质
+   核心思路：让排版承担视觉重量，材质退到几乎不可见。
+   不用大光晕撑场（那是模板配方），改用细颗粒 + 极细网格 + 单点高光。
    ============================================================ */
 @theme {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui,
     -apple-system, "PingFang SC", "Hiragino Sans GB", sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
 
-  /* 前景：暗底上的文字层级 */
-  --color-fg: #f2f2f5;
-  --color-fg-2: #a3a3b0;
-  --color-fg-3: #63636e;
+  /* 前景：极大字号需要更高对比 */
+  --color-fg: #fafafa;
+  --color-fg-2: #8f8f9a;
+  --color-fg-3: #56565f;
 
-  /* 背景 */
-  --color-void: #07070b;
-  --color-void-2: #0d0d13;
+  --color-void: #06060a;
+  --color-void-2: #0b0b11;
 
-  /* 描边 */
-  --color-line: rgba(255, 255, 255, 0.09);
+  --color-line: rgba(255, 255, 255, 0.08);
   --color-line-2: rgba(255, 255, 255, 0.16);
 
-  /* 强调色：紫 → 青 */
-  --color-accent: #7c5cff;
-  --color-accent-2: #22d3ee;
+  /* 单一强调色。刻意不用渐变 —— 紫→青渐变是「AI 深色主题」的标志 */
+  --color-accent: #7c6cff;
 
-  /* 字阶：跨度拉大，体量感来自字号对比而非装饰 */
-  --text-display: clamp(3rem, 9vw, 6.5rem);
-  --text-display--line-height: 0.98;
-  --text-display--letter-spacing: -0.04em;
+  /* 字阶：跨度拉到极端，中间层留空 */
+  --text-mega: clamp(2.5rem, 22vw, 17rem);
+  --text-mega--line-height: 0.9;
+  --text-mega--letter-spacing: -0.045em;
 
-  --text-title: clamp(1.6rem, 3.8vw, 2.6rem);
-  --text-title--line-height: 1.12;
+  --text-display: clamp(1.9rem, 6vw, 4.25rem);
+  --text-display--line-height: 1.02;
+  --text-display--letter-spacing: -0.035em;
+
+  --text-title: clamp(1.5rem, 3.2vw, 2.25rem);
+  --text-title--line-height: 1.15;
   --text-title--letter-spacing: -0.025em;
 
-  --text-meta: 0.75rem;
-  --text-meta--line-height: 1.4;
-  --text-meta--letter-spacing: 0.1em;
+  --text-meta: 0.7rem;
+  --text-meta--line-height: 1.45;
+  --text-meta--letter-spacing: 0.16em;
+
+  /* 宽字距标签（英文名、分类标签） */
+  --text-label: clamp(0.7rem, 1.4vw, 0.9rem);
+  --text-label--line-height: 1.4;
+  --text-label--letter-spacing: 0.42em;
 }
 
 html {
@@ -55,71 +61,62 @@ body {
 }
 
 ::selection {
-  background: rgba(124, 92, 255, 0.35);
+  background: rgba(124, 108, 255, 0.32);
   color: #fff;
 }
 
-/* 键盘导航时才出现的焦点环 */
 :focus-visible {
-  outline: 2px solid var(--color-accent-2);
+  outline: 2px solid var(--color-accent);
   outline-offset: 3px;
-  border-radius: 4px;
-}
-
-/* 滚动条（桌面端） */
-@media (pointer: fine) {
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-  ::-webkit-scrollbar-track {
-    background: var(--color-void);
-  }
-  ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.12);
-    border-radius: 10px;
-    border: 2px solid var(--color-void);
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.2);
-  }
+  border-radius: 3px;
 }
 
 /* ============================================================
-   玻璃拟态
+   材质：全部做到「几乎看不见，但少了就不对」
    ============================================================ */
+
+/* 细颗粒噪点 —— 消除大面积纯色的塑料感 */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* 极细网格 —— 给暗底一点结构，不抢正文 */
+.fine-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+/* 单点锐利高光 —— 一处就够，不要铺满 */
+.light-top {
+  background: radial-gradient(
+    ellipse 60% 40% at 50% 0%,
+    rgba(124, 108, 255, 0.22),
+    transparent 70%
+  );
+}
+
+/* 玻璃：比上一版更薄更冷，只用在按钮和小部件上 */
 .glass {
-  background: rgba(255, 255, 255, 0.035);
-  backdrop-filter: blur(16px) saturate(160%);
-  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  background: rgba(255, 255, 255, 0.028);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
   border: 1px solid var(--color-line);
 }
 
-.glass-hover {
-  transition:
-    border-color 0.45s ease,
-    background-color 0.45s ease,
-    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.45s ease;
-}
-
-.glass-hover:hover {
-  background: rgba(255, 255, 255, 0.062);
-  border-color: rgba(124, 92, 255, 0.4);
-  transform: translateY(-4px);
-  box-shadow:
-    0 0 0 1px rgba(124, 92, 255, 0.12),
-    0 24px 70px -24px rgba(124, 92, 255, 0.5);
-}
-
-/* 顶部导航用的更强一点的玻璃 */
 .glass-bar {
-  background: rgba(7, 7, 11, 0.72);
+  background: rgba(6, 6, 10, 0.7);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid var(--color-line);
 }
 
-/* 按钮/小标签的 hover：只发光不位移，比 .glass-hover 克制 */
 .pill-hover {
   transition:
     border-color 0.3s ease,
@@ -129,74 +126,33 @@ body {
 }
 
 .pill-hover:hover {
-  background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(124, 92, 255, 0.45);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(124, 108, 255, 0.5);
   color: var(--color-fg);
-  box-shadow: 0 0 28px -8px rgba(124, 92, 255, 0.6);
 }
 
 /* ============================================================
-   背景光晕
-   固定在视口上的三团径向渐变，给暗底提供层次。
-   单独写成 class 而不是 Tailwind 任意值，避免逗号/下划线转义的坑。
+   排版辅助
    ============================================================ */
-.bg-glow-a {
-  background: radial-gradient(
-    ellipse at center,
-    rgba(124, 92, 255, 0.3),
-    transparent 65%
-  );
+
+/* 宽字距：把一串字拉成一条线，作为版面的「标尺」 */
+.tracking-wider-x {
+  letter-spacing: 0.42em;
 }
 
-.bg-glow-b {
-  background: radial-gradient(
-    ellipse at center,
-    rgba(34, 211, 238, 0.18),
-    transparent 65%
-  );
-}
-
-.bg-glow-c {
-  background: radial-gradient(
-    ellipse at center,
-    rgba(124, 92, 255, 0.15),
-    transparent 65%
-  );
+/* 巨型标题轻微偏移字符间距，汉字之间更好看 */
+.mega-cn {
+  letter-spacing: -0.02em;
 }
 
 /* ============================================================
-   渐变文字 / 描边
-   ============================================================ */
-.grad-text {
-  background: linear-gradient(
-    170deg,
-    #ffffff 0%,
-    #ffffff 48%,
-    #bfb3ff 82%,
-    #7c5cff 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.grad-accent {
-  background: linear-gradient(100deg, #7c5cff 0%, #22d3ee 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* ============================================================
-   动效：只做三类
-   1) 页面进入  2) 卡片/图片 hover  3) 文字与链接微交互
+   动效：三类
    ============================================================ */
 
-/* 1) 页面进入：上浮 + 淡入 */
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(18px);
   }
   to {
     opacity: 1;
@@ -205,25 +161,30 @@ body {
 }
 
 .rise {
-  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.rise-1 { animation-delay: 0.06s; }
-.rise-2 { animation-delay: 0.13s; }
-.rise-3 { animation-delay: 0.2s; }
-.rise-4 { animation-delay: 0.27s; }
+.rise-1 { animation-delay: 0.07s; }
+.rise-2 { animation-delay: 0.14s; }
+.rise-3 { animation-delay: 0.21s; }
+.rise-4 { animation-delay: 0.28s; }
 
-/* 光晕缓慢呼吸 —— 让暗色背景不死板 */
-@keyframes breathe {
-  0%, 100% { opacity: 0.55; }
-  50% { opacity: 0.85; }
+/* 细线从左展开 —— 版面上的分割线用这个出现 */
+@keyframes rule-in {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
 }
 
-.breathe {
-  animation: breathe 9s ease-in-out infinite;
+.rule-in {
+  transform-origin: left;
+  animation: rule-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* 3) 链接：下划线从左滑入 */
+/* 链接：下划线从左滑入 */
 .link {
   position: relative;
   text-decoration: none;
@@ -246,7 +207,6 @@ body {
   transform: scaleX(1);
 }
 
-/* 正文内联链接 */
 .link-static {
   text-decoration: underline;
   text-decoration-color: var(--color-fg-3);
@@ -255,11 +215,27 @@ body {
 }
 
 .link-static:hover {
-  color: var(--color-accent-2);
-  text-decoration-color: var(--color-accent-2);
+  color: var(--color-accent);
+  text-decoration-color: var(--color-accent);
 }
 
-/* 尊重系统的减弱动效设置 */
+@media (pointer: fine) {
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-void);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    border: 2px solid var(--color-void);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.18);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {

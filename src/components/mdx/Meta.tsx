@@ -4,6 +4,7 @@
  *   <Meta year="2025" role="UI/UX 设计" team="3 人" />
  *
  * 不传的字段会自动省略。
+ * 用上下细线框住而不是玻璃卡片 —— 与全站「排版主导、材质退后」的方向一致。
  */
 export default function Meta({
   year,
@@ -23,13 +24,13 @@ export default function Meta({
   if (items.length === 0) return null;
 
   return (
-    <dl className="glass my-12 grid grid-cols-2 gap-x-8 gap-y-8 rounded-2xl p-7 sm:grid-cols-3 sm:p-8">
+    <dl className="my-14 grid grid-cols-2 gap-x-8 gap-y-8 border-y border-line py-8 sm:grid-cols-3">
       {items.map((item) => (
         <div key={item.label}>
           <dt className="font-mono text-meta text-fg-3 uppercase">
             {item.label}
           </dt>
-          <dd className="mt-2.5 text-sm text-fg">{item.value}</dd>
+          <dd className="mt-3 text-sm text-fg">{item.value}</dd>
         </div>
       ))}
     </dl>
