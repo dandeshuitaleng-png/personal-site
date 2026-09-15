@@ -32,49 +32,45 @@ export default async function ProjectPage({
   if (!project) notFound();
 
   const links = [
-    project.href && { label: "在线预览", href: project.href, external: true },
-    project.repo && { label: "源码", href: project.repo, external: true },
-  ].filter(Boolean) as {
-    label: string;
-    href: string;
-    external: boolean;
-  }[];
+    project.href && { label: "在线预览", href: project.href },
+    project.repo && { label: "源码", href: project.repo },
+  ].filter(Boolean) as { label: string; href: string }[];
 
   return (
-    <article className="mx-auto max-w-[1120px] px-6 py-20 sm:py-28">
+    <article className="mx-auto max-w-[1120px] px-6 py-24">
       <Link
         href="/work"
-        className="link font-mono text-meta text-fg-3 transition-colors hover:text-fg"
+        className="link font-mono text-meta tracking-normal text-fg-3 transition-colors hover:text-fg"
       >
         ← 返回 Work
       </Link>
 
-      <header className="rise mt-12 mb-4">
+      <header className="rise mt-16 mb-16">
         <h1 className="mega-cn text-display font-light">{project.title}</h1>
-        <p className="mt-8 max-w-[560px] text-lg leading-relaxed text-fg-2">
+        <p className="mt-6 max-w-[480px] text-lead text-fg-2">
           {project.summary}
         </p>
 
         {links.length > 0 && (
-          <div className="mt-9 flex flex-wrap gap-3">
+          <div className="mt-10 flex flex-wrap gap-2.5">
             {links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                target={link.external ? "_blank" : undefined}
-                rel={link.external ? "noreferrer" : undefined}
-                className="glass pill-hover inline-flex items-center rounded-full px-5 py-2.5 text-sm text-fg-2"
+                target="_blank"
+                rel="noreferrer"
+                className="glass pill-hover inline-flex items-center rounded-full px-5 py-2.5 text-small text-fg-2"
               >
                 {link.label}
-                {link.external && (
-                  <span className="ml-1.5 text-fg-3" aria-hidden="true">
-                    ↗
-                  </span>
-                )}
+                <span className="ml-1.5 text-fg-3" aria-hidden="true">
+                  ↗
+                </span>
               </a>
             ))}
           </div>
         )}
+
+        <div className="rule-in mt-16 h-px w-full bg-line" />
       </header>
 
       <MDXRemote
@@ -83,10 +79,10 @@ export default async function ProjectPage({
         options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
       />
 
-      <nav className="mt-24 border-t border-line pt-8">
+      <nav className="mt-24 border-t border-line pt-10">
         <Link
           href="/work"
-          className="link text-sm text-fg-2 transition-colors hover:text-fg"
+          className="link text-small text-fg-2 transition-colors hover:text-fg"
         >
           ← 返回全部作品
         </Link>

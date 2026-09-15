@@ -5,16 +5,13 @@ import type { Project } from "@/lib/content";
 /**
  * 作品列表 —— 排版主导 + 图片全出血。
  *
- * 结构上分两层：
- *   文字块收在容器内（有细线分隔，保持阅读栏宽）
- *   图片全出血贴到视口边缘（「整页就是一面画廊墙」）
- * 注意细线**不能**加在 <li> 上 —— 图片是 100vw 而 li 只有容器宽，
- * 线会比图短一截。
+ * 文字块收在容器内（细线分隔，保持阅读栏宽），图片全出血贴到视口边缘。
+ * 注意细线**不能**加在 <li> 上 —— 图片是 100vw 而 li 只有容器宽，线会比图短一截。
  */
 export default function WorkList({ items }: { items: Project[] }) {
   if (items.length === 0) {
     return (
-      <p className="text-base text-fg-3">
+      <p className="text-body text-fg-3">
         还没有作品。在 content/work/ 下新建 .mdx 文件就会出现在这里。
       </p>
     );
@@ -23,8 +20,8 @@ export default function WorkList({ items }: { items: Project[] }) {
   return (
     <ul>
       {items.map((project, i) => (
-        <li key={project.slug} className="pb-16 sm:pb-20">
-          <div className="border-t border-line pt-10 sm:pt-12">
+        <li key={project.slug} className="pb-24">
+          <div className="border-t border-line pt-16">
             <Link href={`/work/${project.slug}`} className="group block">
               <div className="flex items-baseline justify-between gap-6">
                 <span className="font-mono text-meta tracking-normal text-fg-3 tabular-nums">
@@ -35,11 +32,11 @@ export default function WorkList({ items }: { items: Project[] }) {
                 </span>
               </div>
 
-              <h3 className="mega-cn mt-5 text-display font-light">
+              <h3 className="mega-cn mt-6 text-display font-light">
                 {project.title}
               </h3>
 
-              <p className="mt-5 max-w-[520px] text-base leading-relaxed text-fg-2">
+              <p className="mt-4 max-w-[480px] text-body text-fg-2">
                 {project.summary}
               </p>
 
@@ -58,8 +55,7 @@ export default function WorkList({ items }: { items: Project[] }) {
             </Link>
           </div>
 
-          {/* 图片：全出血，独立于文字块 */}
-          <div className="full-bleed mt-12 overflow-hidden sm:mt-14">
+          <div className="full-bleed mt-16 overflow-hidden">
             <Link
               href={`/work/${project.slug}`}
               tabIndex={-1}

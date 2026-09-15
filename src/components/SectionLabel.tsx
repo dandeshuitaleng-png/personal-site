@@ -5,11 +5,11 @@ export default function SectionLabel({
   children: React.ReactNode;
 }) {
   return (
-    <div className="mb-14">
+    <div className="mb-10">
       <h2 className="font-mono text-label tracking-wider-x text-fg-3 uppercase">
         {children}
       </h2>
-      <div className="mt-5 h-px w-full bg-line" />
+      <div className="mt-4 h-px w-full bg-line" />
     </div>
   );
 }

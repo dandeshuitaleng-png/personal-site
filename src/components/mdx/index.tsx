@@ -7,7 +7,7 @@ import Meta from "./Meta";
  * MDX 元素映射：让 Markdown 的默认标签自动带上全站样式。
  *
  * 写作时只管用标准 Markdown（## 标题、> 引用、- 列表、**加粗**），
- * 排版由这里统一控制，不需要在正文里写 class。
+ * 排版由这里统一控制。间距只用 4/6/16/24（16/24/64/96px）。
  */
 export const mdxComponents = {
   Figure,
@@ -26,29 +26,23 @@ export const mdxComponents = {
   ),
 
   h2: (props: ComponentPropsWithoutRef<"h2">) => (
-    <h2
-      className="mega-cn mt-20 mb-6 text-title font-light text-fg"
-      {...props}
-    />
+    <h2 className="mega-cn mt-24 mb-6 text-title font-light" {...props} />
   ),
   h3: (props: ComponentPropsWithoutRef<"h3">) => (
-    <h3 className="mt-12 mb-4 text-lg font-normal text-fg" {...props} />
+    <h3 className="mt-16 mb-4 text-lead font-normal" {...props} />
   ),
   p: (props: ComponentPropsWithoutRef<"p">) => (
-    <p
-      className="mb-6 max-w-[680px] text-base leading-relaxed text-fg-2"
-      {...props}
-    />
+    <p className="mb-6 max-w-[680px] text-body text-fg-2" {...props} />
   ),
   ul: (props: ComponentPropsWithoutRef<"ul">) => (
     <ul
-      className="mb-6 max-w-[680px] list-disc space-y-2 pl-6 text-base leading-relaxed text-fg-2 marker:text-fg-3"
+      className="mb-6 max-w-[680px] list-disc space-y-2 pl-6 text-body text-fg-2 marker:text-fg-3"
       {...props}
     />
   ),
   ol: (props: ComponentPropsWithoutRef<"ol">) => (
     <ol
-      className="mb-6 max-w-[680px] list-decimal space-y-2 pl-6 text-base leading-relaxed text-fg-2 marker:text-fg-3"
+      className="mb-6 max-w-[680px] list-decimal space-y-2 pl-6 text-body text-fg-2 marker:text-fg-3"
       {...props}
     />
   ),
@@ -58,19 +52,19 @@ export const mdxComponents = {
   ),
   blockquote: (props: ComponentPropsWithoutRef<"blockquote">) => (
     <blockquote
-      className="my-14 max-w-[680px] border-l border-line-2 pl-6 text-lg leading-relaxed text-fg italic"
+      className="my-16 max-w-[680px] border-l border-line-2 pl-6 text-lead text-fg italic"
       {...props}
     />
   ),
   code: (props: ComponentPropsWithoutRef<"code">) => (
     <code
-      className="rounded-sm border border-line bg-white/5 px-1.5 py-0.5 font-mono text-[0.9em] text-fg"
+      className="rounded-sm border border-line bg-white/5 px-1.5 py-0.5 font-mono text-small text-fg"
       {...props}
     />
   ),
   pre: (props: ComponentPropsWithoutRef<"pre">) => (
     <pre
-      className="mb-6 max-w-[680px] overflow-x-auto rounded-md border border-line bg-white/3 p-5 font-mono text-sm leading-relaxed text-fg-2"
+      className="mb-6 max-w-[680px] overflow-x-auto rounded-md border border-line bg-white/3 p-5 font-mono text-small leading-relaxed text-fg-2"
       {...props}
     />
   ),

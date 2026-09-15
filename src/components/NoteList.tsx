@@ -1,11 +1,11 @@
 import Link from "next/link";
 import type { Note } from "@/lib/content";
 
-/** 短文列表：细线分隔 + 较大标题，和作品列表用同一套排版语言 */
+/** 短文列表：细线分隔 + 与作品列表同一套模数 */
 export default function NoteList({ notes }: { notes: Note[] }) {
   if (notes.length === 0) {
     return (
-      <p className="text-base text-fg-3">
+      <p className="text-body text-fg-3">
         还没有短文。在 content/notes/ 下新建 .mdx 文件就会出现在这里。
       </p>
     );
@@ -19,7 +19,7 @@ export default function NoteList({ notes }: { notes: Note[] }) {
             href={`/notes/${note.slug}`}
             className="group flex items-baseline justify-between gap-6 py-6"
           >
-            <span className="text-xl text-fg-2 transition-colors duration-300 group-hover:text-fg sm:text-2xl">
+            <span className="text-title text-fg-2 transition-colors duration-300 group-hover:text-fg">
               {note.title}
             </span>
             <time

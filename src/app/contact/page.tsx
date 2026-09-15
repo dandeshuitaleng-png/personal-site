@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="mx-auto max-w-[1120px] px-6 py-20 sm:py-28">
+    <div className="mx-auto max-w-[1120px] px-6 py-24">
       <PageHeader
         title="Contact"
         lead="有合作意向，或者只是想聊聊，都欢迎。邮件我一般都会回。"
@@ -22,7 +22,7 @@ export default function ContactPage() {
         {site.email}
       </a>
 
-      <ul className="mt-20 flex flex-wrap gap-3">
+      <ul className="mt-24 flex flex-wrap gap-2.5 border-t border-line pt-10">
         {site.links.map((link) => {
           const external = link.href.startsWith("http");
           return (
@@ -31,7 +31,7 @@ export default function ContactPage() {
                 href={link.href}
                 target={external ? "_blank" : undefined}
                 rel={external ? "noreferrer" : undefined}
-                className="glass pill-hover inline-flex items-center rounded-full px-5 py-2.5 text-sm text-fg-2"
+                className="glass pill-hover inline-flex items-center rounded-full px-5 py-2.5 text-small text-fg-2"
               >
                 {link.label}
                 {external && (

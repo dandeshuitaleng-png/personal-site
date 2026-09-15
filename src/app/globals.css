@@ -24,24 +24,37 @@
      如果以后想加回颜色，只改这一行就够。 */
   --color-accent: #ffffff;
 
-  /* 字阶：跨度拉到极端，中间层留空 */
-  --text-mega: clamp(2.5rem, 22vw, 17rem);
+  /* ------------------------------------------------------------
+     字阶：7 级，每级有明确职责。
+     不再用 text-sm / text-lg / text-xl 这类模糊值 ——
+     职责不清就会到处乱用，页面就读出「拼凑感」。
+     ------------------------------------------------------------ */
+  --text-mega: clamp(2.5rem, 22vw, 17rem); /* 名字，全站唯一 */
   --text-mega--line-height: 0.9;
   --text-mega--letter-spacing: -0.045em;
 
-  --text-display: clamp(1.9rem, 6vw, 4.25rem);
+  --text-display: clamp(1.9rem, 6vw, 4.25rem); /* 页面标题、作品标题 */
   --text-display--line-height: 1.02;
   --text-display--letter-spacing: -0.035em;
 
-  --text-title: clamp(1.5rem, 3.2vw, 2.25rem);
-  --text-title--line-height: 1.15;
-  --text-title--letter-spacing: -0.025em;
+  --text-title: clamp(1.25rem, 2.4vw, 1.75rem); /* 次级标题 */
+  --text-title--line-height: 1.2;
+  --text-title--letter-spacing: -0.02em;
 
-  --text-meta: 0.7rem;
+  --text-lead: 1.125rem; /* 引导句，一段一个 */
+  --text-lead--line-height: 1.5;
+
+  --text-body: 1rem; /* 正文，占绝大多数 */
+  --text-body--line-height: 1.75;
+
+  --text-small: 0.875rem; /* 按钮、链接、辅助信息 */
+  --text-small--line-height: 1.5;
+
+  --text-meta: 0.6875rem; /* 编号、日期、标签（等宽） */
   --text-meta--line-height: 1.45;
-  --text-meta--letter-spacing: 0.16em;
+  --text-meta--letter-spacing: 0.14em;
 
-  --text-label: clamp(0.7rem, 1.4vw, 0.9rem);
+  --text-label: clamp(0.7rem, 1.4vw, 0.9rem); /* 宽字距标尺 */
   --text-label--line-height: 1.4;
   --text-label--letter-spacing: 0.42em;
 }

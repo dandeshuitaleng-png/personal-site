@@ -35,20 +35,20 @@ export default async function NotePage({
   if (!note) notFound();
 
   return (
-    <article className="mx-auto max-w-[1120px] px-6 py-20 sm:py-28">
+    <article className="mx-auto max-w-[1120px] px-6 py-24">
       <div className="max-w-[680px]">
         <Link
           href="/notes"
-          className="link font-mono text-meta text-fg-3 transition-colors hover:text-fg"
+          className="link font-mono text-meta tracking-normal text-fg-3 transition-colors hover:text-fg"
         >
           ← 返回 Notes
         </Link>
 
-        <header className="rise mt-10 mb-12">
-          <h1 className="mega-cn text-title font-light text-fg">{note.title}</h1>
+        <header className="rise mt-16 mb-16">
+          <h1 className="mega-cn text-display font-light">{note.title}</h1>
           <time
             dateTime={note.date}
-            className="mt-5 block font-mono text-meta text-fg-3 tabular-nums"
+            className="mt-6 block font-mono text-meta text-fg-3 tabular-nums"
           >
             {note.date}
           </time>
