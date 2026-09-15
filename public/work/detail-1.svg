@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="项目详情占位图 1">
+  <defs>
+    <linearGradient id="dbg1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f4f4f6"/>
+      <stop offset="100%" stop-color="#e3e3e6"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#dbg1)"/>
+
+  <!-- 浏览器窗口 -->
+  <rect x="176" y="150" width="1248" height="700" rx="10" fill="#ffffff" stroke="#cfd0d4" stroke-width="1.5"/>
+  <rect x="176" y="150" width="1248" height="52" rx="10" fill="#ececee"/>
+  <rect x="176" y="192" width="1248" height="10" fill="#ececee"/>
+  <circle cx="212" cy="176" r="7" fill="#c6c7cb"/>
+  <circle cx="238" cy="176" r="7" fill="#c6c7cb"/>
+  <circle cx="264" cy="176" r="7" fill="#c6c7cb"/>
+  <rect x="316" y="166" width="300" height="20" rx="10" fill="#dcdde0"/>
+
+  <!-- 侧栏 -->
+  <rect x="176" y="202" width="300" height="648" fill="#f7f7f9"/>
+  <rect x="210" y="248" width="130" height="12" rx="6" fill="#c9cace"/>
+  <rect x="210" y="292" width="212" height="9" rx="4.5" fill="#dcdde0"/>
+  <rect x="210" y="318" width="180" height="9" rx="4.5" fill="#dcdde0"/>
+  <rect x="210" y="344" width="200" height="9" rx="4.5" fill="#dcdde0"/>
+  <rect x="210" y="392" width="150" height="9" rx="4.5" fill="#dcdde0"/>
+  <rect x="210" y="418" width="196" height="9" rx="4.5" fill="#dcdde0"/>
+
+  <!-- 主区 -->
+  <rect x="528" y="256" width="420" height="26" rx="6" fill="#c9cace"/>
+  <rect x="528" y="308" width="620" height="12" rx="6" fill="#dcdde0"/>
+  <rect x="528" y="334" width="548" height="12" rx="6" fill="#dcdde0"/>
+
+  <rect x="528" y="396" width="240" height="180" rx="8" fill="#e8e8eb"/>
+  <rect x="788" y="396" width="240" height="180" rx="8" fill="#e8e8eb"/>
+  <rect x="1048" y="396" width="240" height="180" rx="8" fill="#e8e8eb"/>
+
+  <rect x="528" y="620" width="760" height="12" rx="6" fill="#dcdde0"/>
+  <rect x="528" y="646" width="680" height="12" rx="6" fill="#dcdde0"/>
+  <rect x="528" y="672" width="712" height="12" rx="6" fill="#dcdde0"/>
+
+  <text x="800" y="930" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="25" fill="#9a9ba1" letter-spacing="3">DETAIL · 1600 × 1000 · 替换这张图</text>
+</svg>
