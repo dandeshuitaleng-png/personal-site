@@ -1,0 +1,97 @@
+---
+title: 乡音地图
+summary: 在地图上浏览中国方言分布，录一段自己的乡音，AI 给出方言线索，确认后点亮地图上的那个点。
+year: "2026"
+role: 产品设计 · iOS 开发 · 后端
+team: 独立完成
+tags: ["SwiftUI", "MapKit", "Supabase", "产品设计"]
+cover: /work/xiangyin/cover.webp
+href: https://apps.apple.com/cn/app/id6799622375
+order: 1
+---
+
+<Meta year="2026" role="产品设计 · iOS 开发 · 后端" team="独立完成" />
+
+这个项目的出发点是一个很具体的问题：**方言正在消失，但大多数人并不知道自己的乡音属于哪一支。**
+
+乡音地图把这件事变成一个可以动手玩的动作——录一段自己说的话，AI 给出方言线索，你确认或纠正它，地图上那个点就被点亮了。点亮的结果收进「乡音护照」，成为一个可以带走的个人记录。
+
+<Screens>
+  <Screen src="/work/xiangyin/01-map-explore.webp" label="地图探索 · 3D 地形上的方言代表点" />
+  <Screen src="/work/xiangyin/03-dialect-assessment.webp" label="方言鉴定 · 录音入口" />
+  <Screen src="/work/xiangyin/02-language-directory.webp" label="国家语言目录" />
+  <Screen src="/work/xiangyin/04-personal-center.webp" label="个人中心 · 收藏与护照" />
+  <Screen src="/work/xiangyin/05-daily-voice-challenge.webp" label="每日乡音挑战" />
+</Screens>
+
+## 给谁做
+
+动手之前先定了三个用户画像。它们决定了后面几乎所有的取舍——尤其是「AI 只管给候选，最终由用户确认」这条规则。
+
+<Figure src="/work/xiangyin/persona-away-from-home-young-woman.webp" alt="用户画像：在外地工作的年轻人" caption="画像一 · 在外地工作的人。想确认自己的乡音到底属于哪一支，但不知道从哪查起。" />
+<Figure src="/work/xiangyin/persona-dialect-enthusiast-young-man.webp" alt="用户画像：方言爱好者" caption="画像二 · 方言爱好者。在意分类是否准确，会主动纠正系统的判断。" />
+<Figure src="/work/xiangyin/persona-family-voice-recorder-mature-woman.webp" alt="用户画像：为家人记录声音" caption="画像三 · 想给家里人留下声音记录。关心的不是分类，是声音本身能不能存下来。" />
+
+## 一个语言学上的决定
+
+方言点的标签用**语言学分类**，不用城市名。
+
+比如上海的点位标的是「吴语 · 太湖片 · 上海小片」，而不是「上海话」——后者把行政区划当成了方言分类，这在语言学上是错的，而且会冒犯说同一支方言的其他地区用户。
+
+这个决定很小，但它决定了整个数据模型：点位需要 `dialect_family`、`dialect_group`、`dialect_branch` 三级字段，而不是一个名称字段。
+
+## 设计系统
+
+整个 App 用一套语义 token 驱动，浅色和深色两套值同时定义。下面每个色块左右两半分别是浅色和深色模式：
+
+<Swatches>
+  <Swatch name="paper" note="底色" light="#F7F9FA" dark="#0E1014" />
+  <Swatch name="ink" note="主文字（刻意不用纯黑）" light="#18252B" dark="#F0F5F7" />
+  <Swatch name="teal" note="主强调色 · 黛青" light="#087F78" dark="#1FBA91" />
+  <Swatch name="cinnabar" note="次级强调 · 朱砂" light="#B94736" dark="#F06E57" />
+  <Swatch name="separator" note="分割线" light="#E4E9EC" dark="#404D52" />
+  <Swatch name="panel" note="卡片面" light="#FFFFFF" dark="#1B1E20" />
+  <Swatch name="soft" note="次级面" light="#F4F7F8" dark="#292D2E" />
+  <Swatch name="muted" note="次要文字" light="#5E6E76" dark="#A3ADAD" />
+</Swatches>
+
+纸白打底、黛青做主体、朱砂只用在需要被看见的地方——这套配色和「乡音」这个主题是一体的，不是随手选的品牌色。
+
+## 实现链路
+
+从按下录音到点亮地图，中间要经过六步：
+
+1. **录音** —— 最长 15 秒，避免提交过长音频
+2. **本地校验** —— 在设备上检查时长、音量、峰值。不合格直接就地提示重录，**不浪费一次网络请求**
+3. **提交鉴定** —— 走 Supabase Edge Function，AI 返回方言候选与置信度
+4. **用户确认** —— 这是整个流程里最关键的一步，见下
+5. **点亮地区** —— 确认后写入本地护照
+6. **生成乡音护照** —— 可分享的个人记录
+
+**第 4 步为什么不自动完成：** AI 鉴定必然有错，而方言归属是件跟身份认同相关的事。如果系统直接断言「你是 XX 话」，错了会让人反感；如果让用户自己确认，错了用户会纠正它——**错误从系统的失败变成了用户的参与**。
+
+## 难在哪
+
+**离线兜底。** 地图依赖网络，但方言点目录不能跟着断。做法是随包内置一份 33 点基线，接口不可用时地图仍然可看、可用，只是数据量少。断网时用户看到的是「少」，不是「坏」。
+
+**审核风险。** 用户生成内容（公开乡音卡）是 App Store 审核的重点。所以公开是显式选择的，卡片先审后展示，并且做了撤回和好友管理入口——不是事后补的，是一开始就在数据模型里。
+
+**一套代码两种屏幕。** iPhone 用可拖拽的底部面板，iPad 横屏改成地图 + 全高侧栏。不是把手机版拉伸，是两套布局。
+
+## 结果
+
+**已上架 App Store**（[查看](https://apps.apple.com/cn/app/id6799622375)）：iOS 17+，iPhone 与 iPad 通用，8.6 MB，8 种语言。
+
+技术上：SwiftUI + MapKit 3D 地形 + Supabase 后端。
+
+流程上：关键路径有 28 项单元测试和覆盖中英文、iPhone/iPad、浅色深色的 UI 测试；视觉验收单独记录证据，不把「测试通过」等同于「视觉通过」。
+
+{/* ─────────────────────────────────────────────────────────
+    待补（这段是给作者的注释，不会渲染到页面上）：
+
+    · 为什么做这个 App —— 最初的动机？有具体的触发事件吗？
+    · 最大的一个取舍 —— 哪个决定犹豫最久？
+    · 上架之后发生了什么 —— 有人用吗？收到过什么反馈？
+
+    这三条只有本人知道。补上之后 case study 才算完整。
+   ───────────────────────────────────────────────────────── */}

@@ -2,6 +2,8 @@ import type { ComponentPropsWithoutRef } from "react";
 import Image from "next/image";
 import Figure from "./Figure";
 import Meta from "./Meta";
+import { Swatch, Swatches } from "./Swatches";
+import { Screen, Screens } from "./Screens";
 
 /**
  * MDX 元素映射：让 Markdown 的默认标签自动带上全站样式。
@@ -12,6 +14,10 @@ import Meta from "./Meta";
 export const mdxComponents = {
   Figure,
   Meta,
+  Swatches,
+  Swatch,
+  Screens,
+  Screen,
 
   img: (props: ComponentPropsWithoutRef<"img">) => (
     <span className="full-bleed my-16 block">

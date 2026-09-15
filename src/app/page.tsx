@@ -6,8 +6,8 @@ import SectionLabel from "@/components/SectionLabel";
 import { getAllNotes, getAllProjects } from "@/lib/content";
 
 export default function Home() {
-  const selected = getAllProjects().slice(0, 3);
-  const notes = getAllNotes().slice(0, 3);
+  const projects = getAllProjects();
+  const notes = getAllNotes();
 
   return (
     <>
@@ -15,33 +15,38 @@ export default function Home() {
 
       <section className="mx-auto max-w-[1120px] px-6 pb-24">
         <SectionLabel>Selected Work</SectionLabel>
-        <WorkList items={selected} />
-        <Link
-          href="/work"
-          className="glass pill-hover mt-6 inline-flex items-center rounded-full px-5 py-2.5 text-small text-fg-2"
-        >
-          全部作品
-          <span className="ml-1.5" aria-hidden="true">
-            →
-          </span>
-        </Link>
-      </section>
-
-      <section className="mx-auto max-w-[1120px] px-6 pb-24">
-        <div className="max-w-[680px]">
-          <SectionLabel>Notes</SectionLabel>
-          <NoteList notes={notes} />
+        <WorkList items={projects} />
+        {projects.length > 2 && (
           <Link
-            href="/notes"
+            href="/work"
             className="glass pill-hover mt-6 inline-flex items-center rounded-full px-5 py-2.5 text-small text-fg-2"
           >
-            全部短文
+            全部作品
             <span className="ml-1.5" aria-hidden="true">
               →
             </span>
           </Link>
-        </div>
+        )}
       </section>
+
+      {/* 没有短文时不渲染这一整块，避免首页出现空板块 */}
+      {notes.length > 0 && (
+        <section className="mx-auto max-w-[1120px] px-6 pb-24">
+          <div className="max-w-[680px]">
+            <SectionLabel>Notes</SectionLabel>
+            <NoteList notes={notes} />
+            <Link
+              href="/notes"
+              className="glass pill-hover mt-6 inline-flex items-center rounded-full px-5 py-2.5 text-small text-fg-2"
+            >
+              全部短文
+              <span className="ml-1.5" aria-hidden="true">
+                →
+              </span>
+            </Link>
+          </div>
+        </section>
+      )}
     </>
   );
 }
