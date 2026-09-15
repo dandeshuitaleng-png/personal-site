@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Noto_Serif_SC, Geist_Mono } from "next/font/google";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import SmoothScroll from "@/components/SmoothScroll";
+import Cursor from "@/components/Cursor";
 import { site } from "@/data/site";
 import "./globals.css";
 
@@ -46,6 +48,10 @@ export default function RootLayout({
       className={`${serifSC.variable} ${geistMono.variable}`}
     >
       <body className="flex min-h-dvh flex-col">
+        {/* 交互层：平滑滚动 + 跟随光标的圆环 */}
+        <SmoothScroll />
+        <Cursor />
+
         <div
           aria-hidden="true"
           className="grain pointer-events-none fixed inset-0 -z-10 overflow-hidden"

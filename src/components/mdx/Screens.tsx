@@ -13,7 +13,11 @@ import Image from "next/image";
  */
 export function Screens({ children }: { children: React.ReactNode }) {
   return (
-    <div className="full-bleed my-16 overflow-x-auto pb-2">
+    <div
+      // data-lenis-prevent：这块自己横滚，不要让平滑滚动接管滚轮
+      data-lenis-prevent
+      className="full-bleed my-16 overflow-x-auto pb-2"
+    >
       <div className="mx-auto flex w-max gap-6 px-6">{children}</div>
     </div>
   );

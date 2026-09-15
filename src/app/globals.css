@@ -69,6 +69,25 @@ html {
   overflow-x: hidden;
 }
 
+/* Lenis 平滑滚动需要的样式（相当于 lenis/dist/lenis.css 的关键几条） */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* 局部可滚动区域（如截图横排）不被 Lenis 接管 */
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
 body {
   background: var(--color-void);
   color: var(--color-fg);
@@ -198,6 +217,21 @@ body {
 @keyframes rule-in {
   from { transform: scaleX(0); }
   to { transform: scaleX(1); }
+}
+
+/* 滚动提示：一条横向细线自己伸缩 */
+@keyframes scroll-line {
+  0%, 100% { transform: scaleX(0.35); opacity: 0.4; }
+  50%      { transform: scaleX(1);    opacity: 0.9; }
+}
+
+.scroll-line {
+  display: block;
+  width: 96px;
+  height: 1px;
+  background: var(--color-fg-3);
+  transform-origin: left;
+  animation: scroll-line 3.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
 .rule-in {

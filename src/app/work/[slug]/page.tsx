@@ -45,7 +45,9 @@ export default async function ProjectPage({
         ← 返回 Work
       </Link>
 
-      <header className="rise mt-16 mb-16">
+      {/* 刻意不加 mb —— MDX 正文第一个元素是 <Meta>，它自带 my-16，
+          两个叠在一起会在标题和事实栏之间形成一块空洞 */}
+      <header className="rise mt-16">
         <h1 className="mega-cn text-display">{project.title}</h1>
         <p className="mt-6 max-w-[480px] text-lead text-fg-2">
           {project.summary}
