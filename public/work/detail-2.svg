@@ -1,34 +1,32 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="项目详情占位图 2">
   <defs>
     <linearGradient id="dbg2" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#f4f4f6"/>
-      <stop offset="100%" stop-color="#e3e3e6"/>
+      <stop offset="0%" stop-color="#101018"/>
+      <stop offset="100%" stop-color="#0a0a10"/>
     </linearGradient>
   </defs>
 
   <rect width="1600" height="1000" fill="url(#dbg2)"/>
 
-  <!-- 左：改版前 -->
-  <rect x="132" y="200" width="640" height="600" rx="10" fill="#ffffff" stroke="#cfd0d4" stroke-width="1.5"/>
-  <text x="168" y="172" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="24" fill="#9a9ba1" letter-spacing="3">BEFORE</text>
-  <rect x="172" y="248" width="240" height="18" rx="6" fill="#d3d4d8"/>
-  <rect x="172" y="288" width="480" height="10" rx="5" fill="#e2e2e5"/>
-  <rect x="172" y="310" width="420" height="10" rx="5" fill="#e2e2e5"/>
-  <rect x="172" y="356" width="560" height="180" rx="8" fill="#e8e8eb"/>
-  <rect x="172" y="568" width="270" height="12" rx="6" fill="#e2e2e5"/>
-  <rect x="172" y="592" width="228" height="12" rx="6" fill="#e2e2e5"/>
-  <rect x="172" y="640" width="180" height="40" rx="6" fill="#d3d4d8"/>
-  <rect x="372" y="640" width="180" height="40" rx="6" fill="#e8e8eb"/>
+  <rect x="132" y="200" width="640" height="600" rx="14" fill="#13131b" stroke="#242430" stroke-width="1.5"/>
+  <text x="168" y="172" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="24" fill="#3f3f4d" letter-spacing="3">BEFORE</text>
+  <rect x="172" y="248" width="240" height="18" rx="6" fill="#2c2c3a"/>
+  <rect x="172" y="288" width="480" height="10" rx="5" fill="#22222c"/>
+  <rect x="172" y="310" width="420" height="10" rx="5" fill="#22222c"/>
+  <rect x="172" y="356" width="560" height="180" rx="10" fill="#1a1a24"/>
+  <rect x="172" y="568" width="270" height="12" rx="6" fill="#22222c"/>
+  <rect x="172" y="592" width="228" height="12" rx="6" fill="#22222c"/>
+  <rect x="172" y="640" width="180" height="40" rx="8" fill="#2c2c3a"/>
+  <rect x="372" y="640" width="180" height="40" rx="8" fill="#1a1a24"/>
 
-  <!-- 右：改版后 -->
-  <rect x="828" y="200" width="640" height="600" rx="10" fill="#ffffff" stroke="#b7b8bd" stroke-width="1.5"/>
-  <text x="864" y="172" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="24" fill="#6f7076" letter-spacing="3">AFTER</text>
-  <rect x="868" y="248" width="360" height="26" rx="6" fill="#c9cace"/>
-  <rect x="868" y="300" width="540" height="12" rx="6" fill="#dcdde0"/>
-  <rect x="868" y="326" width="470" height="12" rx="6" fill="#dcdde0"/>
-  <rect x="868" y="372" width="560" height="230" rx="8" fill="#e8e8eb"/>
-  <rect x="868" y="628" width="160" height="44" rx="6" fill="#8e8f95"/>
-  <rect x="1052" y="628" width="160" height="44" rx="6" fill="#e8e8eb"/>
+  <rect x="828" y="200" width="640" height="600" rx="14" fill="#15151f" stroke="#7c5cff" stroke-opacity="0.45" stroke-width="1.5"/>
+  <text x="864" y="172" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="24" fill="#22d3ee" letter-spacing="3">AFTER</text>
+  <rect x="868" y="248" width="360" height="26" rx="6" fill="#3a3a4a"/>
+  <rect x="868" y="300" width="540" height="12" rx="6" fill="#26262f"/>
+  <rect x="868" y="326" width="470" height="12" rx="6" fill="#26262f"/>
+  <rect x="868" y="372" width="560" height="230" rx="10" fill="#1e1e2a"/>
+  <rect x="868" y="628" width="160" height="44" rx="8" fill="#7c5cff" opacity="0.85"/>
+  <rect x="1052" y="628" width="160" height="44" rx="8" fill="#1e1e2a"/>
 
-  <text x="800" y="900" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="25" fill="#9a9ba1" letter-spacing="3">DETAIL · 1600 × 1000 · 替换这张图</text>
+  <text x="800" y="900" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="25" fill="#43434f" letter-spacing="3">DETAIL · 1600 × 1000 · 替换这张图</text>
 </svg>

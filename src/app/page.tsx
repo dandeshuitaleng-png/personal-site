@@ -13,26 +13,32 @@ export default function Home() {
     <>
       <Hero />
 
-      <section className="mx-auto max-w-[1100px] px-6 pb-28 sm:pb-36">
+      <section className="mx-auto max-w-[1120px] px-6 pb-28 sm:pb-36">
         <SectionLabel>Selected Work</SectionLabel>
         <WorkList items={selected} />
         <Link
           href="/work"
-          className="link mt-14 inline-block text-sm text-ink-2 transition-colors hover:text-ink"
+          className="glass pill-hover mt-12 inline-flex items-center rounded-full px-5 py-2.5 text-sm text-fg-2"
         >
-          全部作品 →
+          全部作品
+          <span className="ml-1.5" aria-hidden="true">
+            →
+          </span>
         </Link>
       </section>
 
-      <section className="mx-auto max-w-[1100px] px-6 pb-32 sm:pb-40">
+      <section className="mx-auto max-w-[1120px] px-6 pb-32 sm:pb-40">
         <div className="max-w-[680px]">
           <SectionLabel>Notes</SectionLabel>
           <NoteList notes={notes} />
           <Link
             href="/notes"
-            className="link mt-10 inline-block text-sm text-ink-2 transition-colors hover:text-ink"
+            className="glass pill-hover mt-8 inline-flex items-center rounded-full px-5 py-2.5 text-sm text-fg-2"
           >
-            全部短文 →
+            全部短文
+            <span className="ml-1.5" aria-hidden="true">
+              →
+            </span>
           </Link>
         </div>
       </section>

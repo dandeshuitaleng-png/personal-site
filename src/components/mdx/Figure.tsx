@@ -19,15 +19,11 @@ export default function Figure({
 }) {
   return (
     <figure className="my-14">
-      <Image
-        src={src}
-        alt={alt}
-        width={1600}
-        height={1000}
-        className="w-full rounded-sm border border-line bg-paper-2"
-      />
+      <div className="glass overflow-hidden rounded-2xl">
+        <Image src={src} alt={alt} width={1600} height={1000} className="w-full" />
+      </div>
       {caption && (
-        <figcaption className="mt-3 max-w-[680px] font-mono text-meta text-ink-3">
+        <figcaption className="mt-3.5 max-w-[680px] font-mono text-meta text-fg-3">
           {caption}
         </figcaption>
       )}

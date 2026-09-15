@@ -6,7 +6,6 @@ import remarkGfm from "remark-gfm";
 import { mdxComponents } from "@/components/mdx";
 import { getAllProjects, getProject } from "@/lib/content";
 
-/** 静态导出必须显式列出所有要生成的路径 */
 export function generateStaticParams() {
   return getAllProjects().map((project) => ({ slug: project.slug }));
 }
@@ -32,43 +31,48 @@ export default async function ProjectPage({
 
   if (!project) notFound();
 
+  const links = [
+    project.href && { label: "在线预览", href: project.href, external: true },
+    project.repo && { label: "源码", href: project.repo, external: true },
+  ].filter(Boolean) as {
+    label: string;
+    href: string;
+    external: boolean;
+  }[];
+
   return (
-    <article className="mx-auto max-w-[1100px] px-6 py-20 sm:py-28">
+    <article className="mx-auto max-w-[1120px] px-6 py-20 sm:py-28">
       <Link
         href="/work"
-        className="link font-mono text-meta text-ink-3 transition-colors hover:text-ink"
+        className="link font-mono text-meta text-fg-3 transition-colors hover:text-fg"
       >
         ← 返回 Work
       </Link>
 
       <header className="rise mt-12 mb-4">
-        <h1 className="text-display font-medium">{project.title}</h1>
-        <p className="mt-7 max-w-[560px] text-lg leading-relaxed text-ink-2">
+        <h1 className="grad-text text-display font-medium">{project.title}</h1>
+        <p className="mt-8 max-w-[560px] text-lg leading-relaxed text-fg-2">
           {project.summary}
         </p>
 
-        {(project.href || project.repo) && (
-          <div className="mt-9 flex flex-wrap gap-x-8 gap-y-3">
-            {project.href && (
+        {links.length > 0 && (
+          <div className="mt-9 flex flex-wrap gap-3">
+            {links.map((link) => (
               <a
-                href={project.href}
-                target="_blank"
-                rel="noreferrer"
-                className="link text-sm text-ink-2 transition-colors hover:text-ink"
+                key={link.href}
+                href={link.href}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noreferrer" : undefined}
+                className="glass pill-hover inline-flex items-center rounded-full px-5 py-2.5 text-sm text-fg-2"
               >
-                在线预览 ↗
+                {link.label}
+                {link.external && (
+                  <span className="ml-1.5 text-fg-3" aria-hidden="true">
+                    ↗
+                  </span>
+                )}
               </a>
-            )}
-            {project.repo && (
-              <a
-                href={project.repo}
-                target="_blank"
-                rel="noreferrer"
-                className="link text-sm text-ink-2 transition-colors hover:text-ink"
-              >
-                源码 ↗
-              </a>
-            )}
+            ))}
           </div>
         )}
       </header>
@@ -82,7 +86,7 @@ export default async function ProjectPage({
       <nav className="mt-24 border-t border-line pt-8">
         <Link
           href="/work"
-          className="link text-sm text-ink-2 transition-colors hover:text-ink"
+          className="link text-sm text-fg-2 transition-colors hover:text-fg"
         >
           ← 返回全部作品
         </Link>

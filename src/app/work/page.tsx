@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function WorkPage() {
   return (
-    <div className="mx-auto max-w-[1100px] px-6 py-20 sm:py-28">
+    <div className="mx-auto max-w-[1120px] px-6 py-20 sm:py-28">
       <PageHeader
         title="Work"
         lead="挑了几个自己参与得比较深的项目。每个都尽量讲清楚当时的判断，而不只是最后长什么样。"

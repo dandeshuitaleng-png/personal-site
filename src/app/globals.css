@@ -1,88 +1,202 @@
 @import "tailwindcss";
 
 /* ============================================================
-   设计令牌
-   整体基调：Samuel Kraft 的骨架（大留白、强排版）
-           + Paco 的气质（低密度、细节克制）
-   配色：黑白灰 + 1 个极弱强调色，视觉重点交给作品本身
+   设计令牌 —— 深色 + 发光/玻璃
+   思路：暗底把作品的色彩托起来，玻璃和光晕提供质感，
+        紫→青渐变作为唯一的强调色系。
    ============================================================ */
 @theme {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui,
     -apple-system, "PingFang SC", "Hiragino Sans GB", sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
 
-  /* 中性色阶 */
-  --color-ink: #0a0a0a;
-  --color-ink-2: #52525b;
-  --color-ink-3: #a1a1aa;
-  --color-line: #e4e4e7;
-  --color-paper: #ffffff;
-  --color-paper-2: #fafafa;
+  /* 前景：暗底上的文字层级 */
+  --color-fg: #f2f2f5;
+  --color-fg-2: #a3a3b0;
+  --color-fg-3: #63636e;
 
-  /* 极弱强调色：只用在选区、焦点环、状态点，绝不用于大面积 */
-  --color-accent: #2f6fed;
+  /* 背景 */
+  --color-void: #07070b;
+  --color-void-2: #0d0d13;
 
-  /* 字阶：跨度拉大，但只用 3 个字重（400 / 500 / 600） */
-  --text-display: clamp(2.25rem, 7vw, 4.5rem);
-  --text-display--line-height: 1.05;
-  --text-display--letter-spacing: -0.03em;
+  /* 描边 */
+  --color-line: rgba(255, 255, 255, 0.09);
+  --color-line-2: rgba(255, 255, 255, 0.16);
 
-  --text-title: clamp(1.5rem, 3.5vw, 2.25rem);
-  --text-title--line-height: 1.15;
-  --text-title--letter-spacing: -0.02em;
+  /* 强调色：紫 → 青 */
+  --color-accent: #7c5cff;
+  --color-accent-2: #22d3ee;
+
+  /* 字阶：跨度拉大，体量感来自字号对比而非装饰 */
+  --text-display: clamp(3rem, 9vw, 6.5rem);
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.04em;
+
+  --text-title: clamp(1.6rem, 3.8vw, 2.6rem);
+  --text-title--line-height: 1.12;
+  --text-title--letter-spacing: -0.025em;
 
   --text-meta: 0.75rem;
   --text-meta--line-height: 1.4;
-  --text-meta--letter-spacing: 0.08em;
+  --text-meta--letter-spacing: 0.1em;
 }
 
 html {
   scroll-behavior: smooth;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+  color-scheme: dark;
 }
 
 body {
-  background: var(--color-paper);
-  color: var(--color-ink);
+  background: var(--color-void);
+  color: var(--color-fg);
   font-family: var(--font-sans);
-  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--color-accent) 18%, transparent);
+  background: rgba(124, 92, 255, 0.35);
+  color: #fff;
 }
 
-/* 全站统一的焦点样式，键盘导航时才出现 */
+/* 键盘导航时才出现的焦点环 */
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-accent-2);
   outline-offset: 3px;
-  border-radius: 2px;
+  border-radius: 4px;
+}
+
+/* 滚动条（桌面端） */
+@media (pointer: fine) {
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-void);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    border: 2px solid var(--color-void);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
 }
 
 /* ============================================================
-   动效：只做三类，不做无目的的滚动特效
-   1) 页面进入   2) 图片 hover   3) 文字/链接微交互
+   玻璃拟态
+   ============================================================ */
+.glass {
+  background: rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid var(--color-line);
+}
+
+.glass-hover {
+  transition:
+    border-color 0.45s ease,
+    background-color 0.45s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease;
+}
+
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.062);
+  border-color: rgba(124, 92, 255, 0.4);
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 0 1px rgba(124, 92, 255, 0.12),
+    0 24px 70px -24px rgba(124, 92, 255, 0.5);
+}
+
+/* 顶部导航用的更强一点的玻璃 */
+.glass-bar {
+  background: rgba(7, 7, 11, 0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--color-line);
+}
+
+/* 按钮/小标签的 hover：只发光不位移，比 .glass-hover 克制 */
+.pill-hover {
+  transition:
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.pill-hover:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(124, 92, 255, 0.45);
+  color: var(--color-fg);
+  box-shadow: 0 0 28px -8px rgba(124, 92, 255, 0.6);
+}
+
+/* ============================================================
+   背景光晕
+   固定在视口上的三团径向渐变，给暗底提供层次。
+   单独写成 class 而不是 Tailwind 任意值，避免逗号/下划线转义的坑。
+   ============================================================ */
+.bg-glow-a {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(124, 92, 255, 0.3),
+    transparent 65%
+  );
+}
+
+.bg-glow-b {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(34, 211, 238, 0.18),
+    transparent 65%
+  );
+}
+
+.bg-glow-c {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(124, 92, 255, 0.15),
+    transparent 65%
+  );
+}
+
+/* ============================================================
+   渐变文字 / 描边
+   ============================================================ */
+.grad-text {
+  background: linear-gradient(
+    170deg,
+    #ffffff 0%,
+    #ffffff 48%,
+    #bfb3ff 82%,
+    #7c5cff 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.grad-accent {
+  background: linear-gradient(100deg, #7c5cff 0%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ============================================================
+   动效：只做三类
+   1) 页面进入  2) 卡片/图片 hover  3) 文字与链接微交互
    ============================================================ */
 
-/* 1) 页面进入：轻微上浮 + 淡入，只跑一次 */
+/* 1) 页面进入：上浮 + 淡入 */
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
@@ -91,15 +205,25 @@ body {
 }
 
 .rise {
-  animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.rise-1 { animation-delay: 0.05s; }
-.rise-2 { animation-delay: 0.12s; }
-.rise-3 { animation-delay: 0.19s; }
-.rise-4 { animation-delay: 0.26s; }
+.rise-1 { animation-delay: 0.06s; }
+.rise-2 { animation-delay: 0.13s; }
+.rise-3 { animation-delay: 0.2s; }
+.rise-4 { animation-delay: 0.27s; }
 
-/* 3) 链接微交互：下划线从左滑入 */
+/* 光晕缓慢呼吸 —— 让暗色背景不死板 */
+@keyframes breathe {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 0.85; }
+}
+
+.breathe {
+  animation: breathe 9s ease-in-out infinite;
+}
+
+/* 3) 链接：下划线从左滑入 */
 .link {
   position: relative;
   text-decoration: none;
@@ -122,14 +246,25 @@ body {
   transform: scaleX(1);
 }
 
-/* 常驻下划线（正文内联链接用） */
+/* 正文内联链接 */
 .link-static {
   text-decoration: underline;
-  text-decoration-color: var(--color-ink-3);
+  text-decoration-color: var(--color-fg-3);
   text-underline-offset: 3px;
-  transition: text-decoration-color 0.25s ease;
+  transition: text-decoration-color 0.25s ease, color 0.25s ease;
 }
 
 .link-static:hover {
-  text-decoration-color: var(--color-ink);
+  color: var(--color-accent-2);
+  text-decoration-color: var(--color-accent-2);
+}
+
+/* 尊重系统的减弱动效设置 */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

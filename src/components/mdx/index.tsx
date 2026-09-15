@@ -10,65 +10,67 @@ import Meta from "./Meta";
  * 排版由这里统一控制，不需要在正文里写 class。
  */
 export const mdxComponents = {
-  // 自定义块
   Figure,
   Meta,
 
-  // Markdown 的 ![]() 语法也走 next/image，保证 basePath 正确
   img: (props: ComponentPropsWithoutRef<"img">) => (
-    <Image
-      src={String(props.src ?? "")}
-      alt={String(props.alt ?? "")}
-      width={1600}
-      height={1000}
-      className="w-full rounded-sm border border-line bg-paper-2"
-    />
+    <span className="glass my-12 block overflow-hidden rounded-2xl">
+      <Image
+        src={String(props.src ?? "")}
+        alt={String(props.alt ?? "")}
+        width={1600}
+        height={1000}
+        className="w-full"
+      />
+    </span>
   ),
 
-  // Markdown 原生标签
   h2: (props: ComponentPropsWithoutRef<"h2">) => (
-    <h2 className="mt-20 mb-6 text-title font-medium" {...props} />
+    <h2
+      className="mt-20 mb-6 text-title font-medium tracking-tight text-fg"
+      {...props}
+    />
   ),
   h3: (props: ComponentPropsWithoutRef<"h3">) => (
-    <h3 className="mt-12 mb-4 text-lg font-medium" {...props} />
+    <h3 className="mt-12 mb-4 text-lg font-medium text-fg" {...props} />
   ),
   p: (props: ComponentPropsWithoutRef<"p">) => (
     <p
-      className="mb-6 max-w-[680px] text-base leading-relaxed text-ink-2"
+      className="mb-6 max-w-[680px] text-base leading-relaxed text-fg-2"
       {...props}
     />
   ),
   ul: (props: ComponentPropsWithoutRef<"ul">) => (
     <ul
-      className="mb-6 max-w-[680px] list-disc space-y-2 pl-6 text-base leading-relaxed text-ink-2"
+      className="mb-6 max-w-[680px] list-disc space-y-2 pl-6 text-base leading-relaxed text-fg-2 marker:text-accent"
       {...props}
     />
   ),
   ol: (props: ComponentPropsWithoutRef<"ol">) => (
     <ol
-      className="mb-6 max-w-[680px] list-decimal space-y-2 pl-6 text-base leading-relaxed text-ink-2"
+      className="mb-6 max-w-[680px] list-decimal space-y-2 pl-6 text-base leading-relaxed text-fg-2 marker:text-accent"
       {...props}
     />
   ),
   li: (props: ComponentPropsWithoutRef<"li">) => <li {...props} />,
   strong: (props: ComponentPropsWithoutRef<"strong">) => (
-    <strong className="font-medium text-ink" {...props} />
+    <strong className="font-medium text-fg" {...props} />
   ),
   blockquote: (props: ComponentPropsWithoutRef<"blockquote">) => (
     <blockquote
-      className="my-14 max-w-[680px] border-l-2 border-ink pl-6 text-lg leading-relaxed text-ink italic"
+      className="my-14 max-w-[680px] rounded-r-xl border-l-2 border-accent-2 bg-white/3 py-2 pl-6 text-lg leading-relaxed text-fg italic"
       {...props}
     />
   ),
   code: (props: ComponentPropsWithoutRef<"code">) => (
     <code
-      className="rounded-sm bg-paper-2 px-1.5 py-0.5 font-mono text-[0.9em] text-ink"
+      className="rounded-md border border-line bg-white/5 px-1.5 py-0.5 font-mono text-[0.9em] text-accent-2"
       {...props}
     />
   ),
   pre: (props: ComponentPropsWithoutRef<"pre">) => (
     <pre
-      className="mb-6 max-w-[680px] overflow-x-auto rounded-sm border border-line bg-paper-2 p-4 font-mono text-sm leading-relaxed"
+      className="glass mb-6 max-w-[680px] overflow-x-auto rounded-xl p-5 font-mono text-sm leading-relaxed text-fg-2"
       {...props}
     />
   ),
@@ -76,7 +78,7 @@ export const mdxComponents = {
   a: ({ href, ...props }: ComponentPropsWithoutRef<"a">) => (
     <a
       href={href}
-      className="link-static text-ink"
+      className="link-static text-fg"
       {...(href?.startsWith("http")
         ? { target: "_blank", rel: "noreferrer" }
         : {})}

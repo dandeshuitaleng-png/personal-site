@@ -5,14 +5,12 @@ import Footer from "@/components/Footer";
 import { site } from "@/data/site";
 import "./globals.css";
 
-// Geist 是中性 Grotesk，正好对上「字体以中性 Grotesk 为主」这条。
 const geistSans = Geist({
   subsets: ["latin"],
   variable: "--font-geist-sans",
   display: "swap",
 });
 
-// 等宽字体用于年份、日期、图注这类小标签 —— Paco 那种细节感。
 const geistMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-geist-mono",
@@ -39,11 +37,18 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="zh-CN"
-      className={`${geistSans.variable} ${geistMono.variable}`}
-    >
+    <html lang="zh-CN" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="flex min-h-dvh flex-col">
+        {/* 背景光晕层：固定在视口上，不随滚动移动 */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
+        >
+          <div className="bg-glow-a breathe absolute -top-[28%] left-1/2 h-[75vh] w-[130vw] -translate-x-1/2 blur-[70px]" />
+          <div className="bg-glow-b absolute top-[42%] -right-[18%] h-[62vh] w-[75vw] blur-[80px]" />
+          <div className="bg-glow-c absolute -bottom-[12%] -left-[12%] h-[55vh] w-[65vw] blur-[80px]" />
+        </div>
+
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />

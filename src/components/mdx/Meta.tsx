@@ -23,13 +23,13 @@ export default function Meta({
   if (items.length === 0) return null;
 
   return (
-    <dl className="my-12 grid grid-cols-2 gap-x-8 gap-y-8 border-y border-line py-8 sm:grid-cols-3">
+    <dl className="glass my-12 grid grid-cols-2 gap-x-8 gap-y-8 rounded-2xl p-7 sm:grid-cols-3 sm:p-8">
       {items.map((item) => (
         <div key={item.label}>
-          <dt className="font-mono text-meta text-ink-3 uppercase">
+          <dt className="font-mono text-meta text-fg-3 uppercase">
             {item.label}
           </dt>
-          <dd className="mt-2 text-sm text-ink">{item.value}</dd>
+          <dd className="mt-2.5 text-sm text-fg">{item.value}</dd>
         </div>
       ))}
     </dl>
