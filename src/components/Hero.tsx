@@ -3,7 +3,7 @@ import { site } from "@/data/site";
 export default function Hero() {
   return (
     <section className="mx-auto max-w-[1120px] px-6 pt-16 pb-24 sm:pt-20 sm:pb-32">
-      {/* 顶部标签行：英文名 + 状态。用宽字距把短文本拉成一条「标尺」 */}
+      {/* 顶部标签行：英文名用宽字距拉成一条「标尺」 */}
       <div className="rise flex flex-wrap items-center justify-between gap-4">
         <span className="font-mono text-label tracking-wider-x text-fg-3 uppercase">
           {site.nameEn}
@@ -11,8 +11,8 @@ export default function Hero() {
 
         <span className="glass inline-flex items-center gap-2.5 rounded-full px-3.5 py-1.5">
           <span className="relative flex h-1.5 w-1.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-fg opacity-75" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-fg" />
           </span>
           <span className="font-mono text-meta tracking-normal text-fg-2">
             {site.now.text}
@@ -22,20 +22,19 @@ export default function Hero() {
 
       <div className="rule-in mt-5 h-px w-full bg-line" />
 
-      {/* 巨型名字：整页的视觉主体 */}
-      <h1 className="mega-cn rise rise-1 mt-9 text-mega font-medium">
+      {/* 巨型名字：整页视觉主体。
+          font-light 是关键 —— 轻字重在极端尺度下才有建筑感，粗体只会显得笨重。 */}
+      <h1 className="mega-cn rise rise-1 mt-9 text-mega font-light">
         {site.name}
       </h1>
 
       <div className="rule-in mt-9 h-px w-full bg-line" />
 
-      {/* 副信息：左身份，右标语 */}
       <div className="rise rise-2 mt-6 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
         <p className="text-lg text-fg-2 sm:text-xl">{site.role}</p>
-        <p className="text-base italic text-fg-3">{site.tagline}</p>
+        <p className="text-base text-fg-3 italic">{site.tagline}</p>
       </div>
 
-      {/* 简介与链接：不对称两栏 */}
       <div className="rise rise-3 mt-20 grid gap-10 sm:mt-24 sm:grid-cols-[1fr_auto] sm:items-end">
         <p className="max-w-[500px] text-base leading-relaxed text-fg-2">
           {site.intro}

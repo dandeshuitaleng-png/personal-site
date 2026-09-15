@@ -19,7 +19,7 @@ export default function NoteList({ notes }: { notes: Note[] }) {
             href={`/notes/${note.slug}`}
             className="group flex items-baseline justify-between gap-6 py-6"
           >
-            <span className="text-xl text-fg transition-colors duration-300 group-hover:text-accent sm:text-2xl">
+            <span className="text-xl text-fg-2 transition-colors duration-300 group-hover:text-fg sm:text-2xl">
               {note.title}
             </span>
             <time

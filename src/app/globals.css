@@ -1,28 +1,28 @@
 @import "tailwindcss";
 
 /* ============================================================
-   设计令牌 —— 巨型字体 + 精密材质
-   核心思路：让排版承担视觉重量，材质退到几乎不可见。
-   不用大光晕撑场（那是模板配方），改用细颗粒 + 极细网格 + 单点高光。
+   设计令牌 —— 巨型轻字重 + 纯黑白
+   无彩色方案：没有颜色可以借力，层级只能靠
+   字重、字号、透明度、细线来建立。
    ============================================================ */
 @theme {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui,
     -apple-system, "PingFang SC", "Hiragino Sans GB", sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
 
-  /* 前景：极大字号需要更高对比 */
+  /* 前景：只有三级灰度，层级完全靠透明度 */
   --color-fg: #fafafa;
   --color-fg-2: #8f8f9a;
   --color-fg-3: #56565f;
 
   --color-void: #06060a;
-  --color-void-2: #0b0b11;
 
   --color-line: rgba(255, 255, 255, 0.08);
   --color-line-2: rgba(255, 255, 255, 0.16);
 
-  /* 单一强调色。刻意不用渐变 —— 紫→青渐变是「AI 深色主题」的标志 */
-  --color-accent: #7c6cff;
+  /* 强调色 = 纯白。全站唯一的「高亮」就是更亮。
+     如果以后想加回颜色，只改这一行就够。 */
+  --color-accent: #ffffff;
 
   /* 字阶：跨度拉到极端，中间层留空 */
   --text-mega: clamp(2.5rem, 22vw, 17rem);
@@ -41,7 +41,6 @@
   --text-meta--line-height: 1.45;
   --text-meta--letter-spacing: 0.16em;
 
-  /* 宽字距标签（英文名、分类标签） */
   --text-label: clamp(0.7rem, 1.4vw, 0.9rem);
   --text-label--line-height: 1.4;
   --text-label--letter-spacing: 0.42em;
@@ -50,25 +49,28 @@
 html {
   scroll-behavior: smooth;
   color-scheme: dark;
+  /* 全出血图片用 100vw，会算进滚动条宽度，禁掉横向滚动 */
+  overflow-x: hidden;
 }
 
 body {
   background: var(--color-void);
   color: var(--color-fg);
   font-family: var(--font-sans);
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: rgba(124, 108, 255, 0.32);
+  background: rgba(255, 255, 255, 0.22);
   color: #fff;
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 1px solid var(--color-fg);
   outline-offset: 3px;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 /* ============================================================
@@ -93,27 +95,27 @@ body {
   background-size: 72px 72px;
 }
 
-/* 单点锐利高光 —— 一处就够，不要铺满 */
+/* 顶部单点高光 —— 无彩色方案里，这是唯一的光 */
 .light-top {
   background: radial-gradient(
     ellipse 60% 40% at 50% 0%,
-    rgba(124, 108, 255, 0.22),
+    rgba(255, 255, 255, 0.07),
     transparent 70%
   );
 }
 
-/* 玻璃：比上一版更薄更冷，只用在按钮和小部件上 */
+/* 玻璃：极薄，只用在按钮上 */
 .glass {
   background: rgba(255, 255, 255, 0.028);
-  backdrop-filter: blur(12px) saturate(150%);
-  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
   border: 1px solid var(--color-line);
 }
 
 .glass-bar {
-  background: rgba(6, 6, 10, 0.7);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(6, 6, 10, 0.72);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
   border-bottom: 1px solid var(--color-line);
 }
 
@@ -121,13 +123,12 @@ body {
   transition:
     border-color 0.3s ease,
     background-color 0.3s ease,
-    color 0.3s ease,
-    box-shadow 0.3s ease;
+    color 0.3s ease;
 }
 
 .pill-hover:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(124, 108, 255, 0.5);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--color-line-2);
   color: var(--color-fg);
 }
 
@@ -135,18 +136,25 @@ body {
    排版辅助
    ============================================================ */
 
-/* 宽字距：把一串字拉成一条线，作为版面的「标尺」 */
+/* 全出血：让图片突破容器贴到视口边缘，形成「画廊墙」 */
+.full-bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* 宽字距：把一串短文本拉成一条「标尺」 */
 .tracking-wider-x {
   letter-spacing: 0.42em;
 }
 
-/* 巨型标题轻微偏移字符间距，汉字之间更好看 */
+/* 巨型汉字单独收一下字距 */
 .mega-cn {
   letter-spacing: -0.02em;
 }
 
 /* ============================================================
-   动效：三类
+   动效
    ============================================================ */
 
 @keyframes rise {
@@ -169,14 +177,10 @@ body {
 .rise-3 { animation-delay: 0.21s; }
 .rise-4 { animation-delay: 0.28s; }
 
-/* 细线从左展开 —— 版面上的分割线用这个出现 */
+/* 细线从左展开 */
 @keyframes rule-in {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
 }
 
 .rule-in {
@@ -215,8 +219,8 @@ body {
 }
 
 .link-static:hover {
-  color: var(--color-accent);
-  text-decoration-color: var(--color-accent);
+  color: var(--color-fg);
+  text-decoration-color: var(--color-fg);
 }
 
 @media (pointer: fine) {

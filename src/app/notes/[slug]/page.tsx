@@ -45,7 +45,7 @@ export default async function NotePage({
         </Link>
 
         <header className="rise mt-10 mb-12">
-          <h1 className="text-title font-medium text-fg">{note.title}</h1>
+          <h1 className="mega-cn text-title font-light text-fg">{note.title}</h1>
           <time
             dateTime={note.date}
             className="mt-5 block font-mono text-meta text-fg-3 tabular-nums"

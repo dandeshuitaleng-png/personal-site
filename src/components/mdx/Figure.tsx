@@ -5,6 +5,7 @@ import Image from "next/image";
  *
  *   <Figure src="/work/xxx.png" alt="说明" caption="图注（可选）" />
  *
+ * 图片全出血贴到视口边缘，图注仍收在正文栏宽内。
  * 路径写 public/ 下的绝对路径（如 /work/xxx.png），
  * next/image 会自动补上 basePath 前缀。
  */
@@ -18,12 +19,16 @@ export default function Figure({
   caption?: string;
 }) {
   return (
-    <figure className="my-14">
-      <div className="glass overflow-hidden rounded-2xl">
-        <Image src={src} alt={alt} width={1600} height={1000} className="w-full" />
-      </div>
+    <figure className="full-bleed my-16">
+      <Image
+        src={src}
+        alt={alt}
+        width={1600}
+        height={1000}
+        className="max-h-[75vh] w-full object-cover"
+      />
       {caption && (
-        <figcaption className="mt-3.5 max-w-[680px] font-mono text-meta text-fg-3">
+        <figcaption className="mx-auto mt-4 max-w-[680px] px-6 font-mono text-meta text-fg-3">
           {caption}
         </figcaption>
       )}

@@ -14,25 +14,25 @@ export const mdxComponents = {
   Meta,
 
   img: (props: ComponentPropsWithoutRef<"img">) => (
-    <span className="glass my-12 block overflow-hidden rounded-2xl">
+    <span className="full-bleed my-16 block">
       <Image
         src={String(props.src ?? "")}
         alt={String(props.alt ?? "")}
         width={1600}
         height={1000}
-        className="w-full"
+        className="max-h-[75vh] w-full object-cover"
       />
     </span>
   ),
 
   h2: (props: ComponentPropsWithoutRef<"h2">) => (
     <h2
-      className="mt-20 mb-6 text-title font-medium tracking-tight text-fg"
+      className="mega-cn mt-20 mb-6 text-title font-light text-fg"
       {...props}
     />
   ),
   h3: (props: ComponentPropsWithoutRef<"h3">) => (
-    <h3 className="mt-12 mb-4 text-lg font-medium text-fg" {...props} />
+    <h3 className="mt-12 mb-4 text-lg font-normal text-fg" {...props} />
   ),
   p: (props: ComponentPropsWithoutRef<"p">) => (
     <p
@@ -42,35 +42,35 @@ export const mdxComponents = {
   ),
   ul: (props: ComponentPropsWithoutRef<"ul">) => (
     <ul
-      className="mb-6 max-w-[680px] list-disc space-y-2 pl-6 text-base leading-relaxed text-fg-2 marker:text-accent"
+      className="mb-6 max-w-[680px] list-disc space-y-2 pl-6 text-base leading-relaxed text-fg-2 marker:text-fg-3"
       {...props}
     />
   ),
   ol: (props: ComponentPropsWithoutRef<"ol">) => (
     <ol
-      className="mb-6 max-w-[680px] list-decimal space-y-2 pl-6 text-base leading-relaxed text-fg-2 marker:text-accent"
+      className="mb-6 max-w-[680px] list-decimal space-y-2 pl-6 text-base leading-relaxed text-fg-2 marker:text-fg-3"
       {...props}
     />
   ),
   li: (props: ComponentPropsWithoutRef<"li">) => <li {...props} />,
   strong: (props: ComponentPropsWithoutRef<"strong">) => (
-    <strong className="font-medium text-fg" {...props} />
+    <strong className="font-normal text-fg" {...props} />
   ),
   blockquote: (props: ComponentPropsWithoutRef<"blockquote">) => (
     <blockquote
-      className="my-14 max-w-[680px] rounded-r-xl border-l-2 border-accent-2 bg-white/3 py-2 pl-6 text-lg leading-relaxed text-fg italic"
+      className="my-14 max-w-[680px] border-l border-line-2 pl-6 text-lg leading-relaxed text-fg italic"
       {...props}
     />
   ),
   code: (props: ComponentPropsWithoutRef<"code">) => (
     <code
-      className="rounded-md border border-line bg-white/5 px-1.5 py-0.5 font-mono text-[0.9em] text-accent-2"
+      className="rounded-sm border border-line bg-white/5 px-1.5 py-0.5 font-mono text-[0.9em] text-fg"
       {...props}
     />
   ),
   pre: (props: ComponentPropsWithoutRef<"pre">) => (
     <pre
-      className="glass mb-6 max-w-[680px] overflow-x-auto rounded-xl p-5 font-mono text-sm leading-relaxed text-fg-2"
+      className="mb-6 max-w-[680px] overflow-x-auto rounded-md border border-line bg-white/3 p-5 font-mono text-sm leading-relaxed text-fg-2"
       {...props}
     />
   ),
