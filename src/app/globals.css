@@ -32,9 +32,11 @@
      不再用 text-sm / text-lg / text-xl 这类模糊值 ——
      职责不清就会到处乱用，页面就读出「拼凑感」。
      ------------------------------------------------------------ */
-  --text-mega: clamp(2.5rem, 22vw, 17rem); /* 名字，全站唯一 */
-  --text-mega--line-height: 0.9;
-  --text-mega--letter-spacing: -0.045em;
+  /* 名字。首屏改成左文右图后，文字栏变窄，字号要相应收
+     （22vw 时三个汉字会撑破 1fr 栏，压到右侧的手机图上） */
+  --text-mega: clamp(2.25rem, 16vw, 13rem);
+  --text-mega--line-height: 0.92;
+  --text-mega--letter-spacing: -0.04em;
 
   --text-display: clamp(1.9rem, 6vw, 4.25rem); /* 页面标题、作品标题 */
   --text-display--line-height: 1.02;
