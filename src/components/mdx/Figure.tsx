@@ -19,7 +19,7 @@ export default function Figure({
   caption?: string;
 }) {
   return (
-    <figure className="full-bleed my-16">
+    <figure data-reveal className="full-bleed my-16">
       <Image
         src={src}
         alt={alt}

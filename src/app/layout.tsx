@@ -4,6 +4,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
 import Cursor from "@/components/Cursor";
+import ScrollEffects from "@/components/ScrollEffects";
 import { site } from "@/data/site";
 import "./globals.css";
 
@@ -51,6 +52,7 @@ export default function RootLayout({
         {/* 交互层：平滑滚动 + 跟随光标的圆环 */}
         <SmoothScroll />
         <Cursor />
+        <ScrollEffects />
 
         <div
           aria-hidden="true"

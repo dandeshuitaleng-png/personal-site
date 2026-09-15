@@ -23,7 +23,11 @@ export default function Meta({
   if (items.length === 0) return null;
 
   return (
-    <dl className="my-16 grid grid-cols-2 gap-x-6 gap-y-10 border-y border-line py-10 sm:grid-cols-3">
+    <dl
+      data-reveal
+      data-reveal-stagger="true"
+      className="my-16 grid grid-cols-2 gap-x-6 gap-y-10 border-y border-line py-10 sm:grid-cols-3"
+    >
       {items.map((item) => (
         <div key={item.label}>
           <dt className="font-mono text-meta text-fg-3 uppercase">

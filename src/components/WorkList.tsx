@@ -18,7 +18,7 @@ export default function WorkList({ items }: { items: Project[] }) {
   }
 
   return (
-    <ul>
+    <ul data-reveal data-reveal-stagger="true">
       {items.map((project, i) => (
         <li key={project.slug} className="pb-24">
           <div className="border-t border-line pt-16">

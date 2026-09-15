@@ -23,7 +23,7 @@ export const mdxComponents = {
   Persona,
 
   img: (props: ComponentPropsWithoutRef<"img">) => (
-    <span className="full-bleed my-16 block">
+    <span data-reveal className="full-bleed my-16 block">
       <Image
         src={String(props.src ?? "")}
         alt={String(props.alt ?? "")}
@@ -35,7 +35,7 @@ export const mdxComponents = {
   ),
 
   h2: (props: ComponentPropsWithoutRef<"h2">) => (
-    <h2 className="mega-cn mt-24 mb-6 text-title" {...props} />
+    <h2 data-reveal className="mega-cn mt-24 mb-6 text-title" {...props} />
   ),
   h3: (props: ComponentPropsWithoutRef<"h3">) => (
     <h3 className="mt-16 mb-4 text-lead font-normal" {...props} />

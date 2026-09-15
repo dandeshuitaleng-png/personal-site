@@ -8,11 +8,14 @@ import { site } from "@/data/site";
 */
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden">
+    <section data-hero className="relative overflow-hidden">
       {/* 实时波形层：呼应作品的声音主题，光标靠近时鼓起 */}
       <WaveField />
 
-      <div className="relative mx-auto max-w-[1120px] px-6 pt-16 pb-24">
+      <div
+        data-hero-parallax
+        className="relative mx-auto max-w-[1120px] px-6 pt-16 pb-24"
+      >
         <div className="rise flex flex-wrap items-center justify-between gap-4">
           <span className="font-mono text-label tracking-wider-x text-fg-3 uppercase">
             {site.nameEn}

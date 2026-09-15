@@ -13,7 +13,13 @@ import Image from "next/image";
  */
 export function PersonaRow({ children }: { children: React.ReactNode }) {
   return (
-    <div className="my-16 grid gap-10 sm:grid-cols-3 sm:gap-6">{children}</div>
+    <div
+      data-reveal
+      data-reveal-stagger="true"
+      className="my-16 grid gap-10 sm:grid-cols-3 sm:gap-6"
+    >
+      {children}
+    </div>
   );
 }
 
