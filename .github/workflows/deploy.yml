@@ -33,6 +33,10 @@ jobs:
 
       - name: 构建静态站点
         run: npm run build
+        env:
+          # 传给 image-loader，给 public/ 下的图片加缓存版本号。
+          # 没有它的话，换了图但文件名没变，访客会一直看到缓存里的旧图。
+          NEXT_PUBLIC_BUILD_ID: ${{ github.sha }}
 
       - name: 上传构建产物
         uses: actions/upload-pages-artifact@v3
