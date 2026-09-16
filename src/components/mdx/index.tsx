@@ -5,6 +5,7 @@ import Meta from "./Meta";
 import { Swatch, Swatches } from "./Swatches";
 import { Screen, Screens } from "./Screens";
 import { Persona, PersonaRow } from "./PersonaRow";
+import { Card, CardGrid, StatCard } from "./CardGrid";
 
 /**
  * MDX 元素映射：让 Markdown 的默认标签自动带上全站样式。
@@ -21,6 +22,9 @@ export const mdxComponents = {
   Screen,
   PersonaRow,
   Persona,
+  CardGrid,
+  Card,
+  StatCard,
 
   img: (props: ComponentPropsWithoutRef<"img">) => (
     <span data-reveal className="full-bleed my-16 block">
